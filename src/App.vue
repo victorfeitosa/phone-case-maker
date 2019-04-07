@@ -1,18 +1,22 @@
 <template>
-  <div id="app"></div>
+  <div id="app">App</div>
 </template>
 
 <script>
 export default {
-  name: "app",
+  name: 'app',
   components: {}
 };
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
+<style lang="scss">
+@import '/node_modules/vuetify/dist/vuetify.min.css';
+@import './styles/palette';
+@import './styles/fonts';
+
 #app {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: $montserrat;
+  font-size: 32px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
