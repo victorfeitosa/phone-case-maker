@@ -1,16 +1,22 @@
 <template>
-  <div id="app">App</div>
+  <v-app id="app">
+    <v-content>
+      <CustomizerPage />
+    </v-content>
+  </v-app>
 </template>
 
 <script>
+import CustomizerPage from './components/Pages/CustomizerPage';
 export default {
   name: 'app',
-  components: {}
+  components: {
+    CustomizerPage
+  }
 };
 </script>
 
 <style lang="scss">
-@import '/node_modules/vuetify/dist/vuetify.min.css';
 @import './styles/palette';
 @import './styles/fonts';
 
