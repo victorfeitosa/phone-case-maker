@@ -36,6 +36,7 @@
       "eslint:recommended"
     ],
     "rules": {
+      "no-console": 0,
       "quotes": [
         1,
         "single"

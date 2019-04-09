@@ -8,18 +8,14 @@
           <v-flex md9 class="purple">Canvas area</v-flex>
         </v-layout>
       </v-flex>
-      <v-flex md6 pa-4>
+      <v-flex md6 align pa-4>
         <!-- Controls go here -->
-        Controls
-        <v-layout column class="blue">
-          Background controls
-        </v-layout>
-        <v-layout column class="green">
-          Drop Elements
-        </v-layout>
-        <v-layout column class="yellow" fill-height>
-          Element Options
-        </v-layout>
+
+        <!-- Background picker -->
+        <BackgroundPicker />
+
+        <!-- Elements Picker -->
+        <ElementPicker />
       </v-flex>
     </v-layout>
   </v-container>
@@ -27,7 +23,15 @@
 
 
 <script>
-export default {};
+import BackgroundPicker from '../PickerElements/BackgroundPicker';
+import ElementPicker from '../PickerElements/ElementPicker';
+
+export default {
+  components: {
+    BackgroundPicker,
+    ElementPicker
+  }
+};
 </script>
 
 <style lang="scss" scoped>
