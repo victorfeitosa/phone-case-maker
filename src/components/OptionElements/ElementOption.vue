@@ -7,8 +7,12 @@
 <script>
 export default {
   props: {
-    icon: String,
-    click: Function
+    icon: String
+  },
+  methods: {
+    click: function(e) {
+      this.$emit('click', e);
+    }
   }
 };
 </script>

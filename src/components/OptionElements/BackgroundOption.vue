@@ -1,5 +1,5 @@
 <template>
-  <v-btn small fab flat outline @click="click" color="blue">
+  <v-btn small fab flat outline color="blue" @click="click">
     <i :class="`option-icon option-icon--${icon}`"></i>
   </v-btn>
 </template>
@@ -7,8 +7,12 @@
 <script>
 export default {
   props: {
-    icon: String,
-    click: Function
+    icon: String
+  },
+  methods: {
+    click: function(e) {
+      this.$emit('click', e);
+    }
   }
 };
 </script>

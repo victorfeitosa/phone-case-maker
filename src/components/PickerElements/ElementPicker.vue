@@ -1,15 +1,17 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row wrap pt-4>
     <!-- Title -->
     <v-layout row>
       <v-flex xs12>
-        <h3 class="subheading text-xs-left">Elements</h3>
+        <h2 class="title text-xs-left">Elements</h2>
       </v-flex>
     </v-layout>
 
     <!-- Element Options -->
-    <ElementOption />
-    <ElementOption />
+    <v-flex xs12 text-xs-left py-0>
+      <ElementOption />
+      <ElementOption />
+    </v-flex>
     <!-- Element Properties -->
     <ElementProperties />
   </v-layout>
