@@ -1,9 +1,28 @@
-<template></template>
+<template>
+  <div class="phone-fore"></div>
+</template>
 
 <script>
 export default {};
 </script>
 
 <style lang="scss" scoped>
+$frame-width: 258px;
+$frame-height: 542px;
+
+.phone-fore {
+  background-image: url("/other/case-foregr.svg");
+  background-position: center;
+  background-size: $frame-width $frame-height;
+  border-radius: 32px;
+  height: $frame-height;
+  left: 50%;
+  margin: 0 auto;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: $frame-width;
+}
 </style>
 

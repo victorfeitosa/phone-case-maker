@@ -23,7 +23,7 @@
        inkscape:collect="always"
        id="linearGradient4564">
       <stop
-         style="stop-color:#ffebc9;stop-opacity:0.09803922"
+         style="stop-color:#ffffff;stop-opacity:0.47058824"
          offset="0"
          id="stop4560" />
       <stop
@@ -40,7 +40,7 @@
        x2="148.23856"
        y2="242.61064"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.8787878,0,0,1.8787878,-75.344295,-274.12691)" />
+       gradientTransform="matrix(1.8822332,0,0,1.9005992,-76.306183,-279.39396)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -49,9 +49,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.32186495"
-     inkscape:cx="-51.888521"
-     inkscape:cy="1102.9645"
+     inkscape:zoom="0.25"
+     inkscape:cx="125.11822"
+     inkscape:cy="504.35725"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -76,7 +76,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -86,13 +86,13 @@
      id="layer1"
      transform="translate(-4.2471528,235.58878)">
     <rect
-       style="opacity:1;vector-effect:none;fill:url(#linearGradient4566);fill-opacity:1;stroke-width:0.49709594;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;vector-effect:none;fill:url(#linearGradient4566);fill-opacity:1;stroke-width:0.50043136;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4529"
-       width="231.0768"
-       height="481.24069"
-       x="5.0691848"
-       y="-230.82315"
-       ry="29.124281" />
+       width="231.50055"
+       height="486.82767"
+       x="4.2547646"
+       y="-235.58749"
+       ry="29.462399" />
     <rect
        style="opacity:1;vector-effect:none;fill:#483e3e;fill-opacity:1;stroke-width:0.49709594;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4593"

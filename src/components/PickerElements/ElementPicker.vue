@@ -8,12 +8,12 @@
     </v-layout>
 
     <!-- Element Options -->
-    <v-flex xs12 text-xs-left py-0>
-      <ElementOption />
-      <ElementOption />
+    <v-flex xs12 text-xs-left pa-0>
+      <ElementOption icon="insert_emoticon" label="Add a Sticker" />
+      <ElementOption icon="text_fields" label="Add a Text Element" />
     </v-flex>
     <!-- Element Properties -->
-    <ElementProperties />
+    <ElementProperties tab-active="sticker" />
   </v-layout>
 </template>
 

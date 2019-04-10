@@ -1,13 +1,26 @@
 <template>
-  <v-btn small fab flat outline @click="click" color="blue">
-    <i :class="`option-icon option-icon--${icon}`"></i>
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on }">
+      <v-btn small fab flat color="blue" outline v-on="on" @click="click">
+        <!-- <i :class="`option-icon option-icon--${icon}`"></i> -->
+        <v-icon>{{ icon }}</v-icon>
+      </v-btn>
+    </template>
+    <span>{{ label }}</span>
+  </v-tooltip>
 </template>
 
 <script>
 export default {
   props: {
-    icon: String
+    icon: {
+      type: String,
+      required: true
+    },
+    label: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     click: function(e) {
