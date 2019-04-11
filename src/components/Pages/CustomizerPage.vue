@@ -1,8 +1,8 @@
 <template>
-  <v-container grid-list-lg pa-0 fill-height class="page">
-    <v-layout>
-      <v-flex md6 class="grey lighten-4">
-        <!-- Canvas element goes here -->
+  <v-container class="page" height="80">
+    <v-layout row>
+      <v-flex md6>
+        <!-- Canvas-->
         <v-layout row justify-center>
           <v-flex xs9 pt-5>
             <Canvas />
@@ -18,13 +18,19 @@
         </v-layout>
       </v-flex>
 
-      <!-- Controls go here -->
-      <v-flex md6 align pa-4>
-        <!-- Background picker -->
-        <BackgroundPicker />
+      <!-- Controls -->
+      <v-flex md6 pa-4 grow>
+        <v-layout column>
+          <!-- Background picker -->
+          <v-flex xs6>
+            <BackgroundPicker />
+          </v-flex>
 
-        <!-- Elements Picker -->
-        <ElementPicker />
+          <!-- Elements Picker -->
+          <v-flex xs6>
+            <ElementPicker />
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
@@ -49,9 +55,7 @@ export default {
 .page {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
-  height: 80vh;
-  overflow: hidden;
-  width: 70vw;
+  max-height: 80vh;
 }
 </style>
 

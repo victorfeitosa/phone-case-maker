@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <v-toolbar app dark></v-toolbar>
     <v-content>
       <CustomizerPage />
     </v-content>
@@ -17,8 +18,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import './styles/palette';
-@import './styles/fonts';
+@import "./styles/palette";
+@import "./styles/fonts";
 
 #app {
   font-family: $montserrat;

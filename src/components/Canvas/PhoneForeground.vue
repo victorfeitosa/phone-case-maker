@@ -11,7 +11,7 @@ $frame-width: 258px;
 $frame-height: 542px;
 
 .phone-fore {
-  background-image: url("/other/case-foregr.svg");
+  background-image: url("/images/other/case-foregr.svg");
   background-position: center;
   background-size: $frame-width $frame-height;
   border-radius: 32px;

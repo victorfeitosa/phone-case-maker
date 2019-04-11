@@ -1,36 +1,24 @@
 <template>
-  <v-layout row fill-height>
+  <v-layout>
     <v-flex xs12>
-      <v-card flat v-if="tabActive === 'sticker'">
-        <v-item-group>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <!-- Sticker Items -->
-              <v-flex xs8 md4>
-                <v-item>Sticker</v-item>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-item-group>
-      </v-card>
-      <v-card flat v-else>
-        <v-item-group>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <!-- Sticker Items -->
-              <v-flex xs8 md4>
-                <v-item>Text Font</v-item>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-item-group>
-      </v-card>
+      <!-- Sticker Items -->
+      <StickerPicker v-if="tabActive === 'sticker'" />
+      <TextPicker v-else />
     </v-flex>
   </v-layout>
+  <!-- <v-card class="scroll-y">
+  </v-card> -->
 </template>
 
 <script>
+import TextPicker from '../PickerElements/TextPicker';
+import StickerPicker from '../PickerElements/StickerPicker';
+
 export default {
+  components: {
+    TextPicker,
+    StickerPicker
+  },
   props: {
     tabActive: {
       type: String,

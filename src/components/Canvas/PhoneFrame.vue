@@ -11,7 +11,7 @@ $frame-width: 258px;
 $frame-height: 542px;
 
 .phone-case {
-  background-image: url("/other/case-backgr.svg");
+  background-image: url("/images/other/case-backgr.svg");
   background-size: 100%;
   height: 100%;
   pointer-events: none;

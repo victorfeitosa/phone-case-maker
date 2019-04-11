@@ -1,19 +1,20 @@
 <template>
-  <v-layout row wrap pt-4>
-    <!-- Title -->
-    <v-layout row>
-      <v-flex xs12>
-        <h2 class="title text-xs-left">Elements</h2>
-      </v-flex>
-    </v-layout>
+  <v-layout column pt-4>
+    <v-flex>
+      <!-- Title -->
+      <h2 class="title text-xs-left">Elements</h2>
+    </v-flex>
 
     <!-- Element Options -->
-    <v-flex xs12 text-xs-left pa-0>
+    <v-flex text-xs-left>
       <ElementOption icon="insert_emoticon" label="Add a Sticker" />
       <ElementOption icon="text_fields" label="Add a Text Element" />
     </v-flex>
+
     <!-- Element Properties -->
-    <ElementProperties tab-active="sticker" />
+    <v-flex class="scroll-y" max-height="250">
+      <ElementProperties tab-active="sticker" />
+    </v-flex>
   </v-layout>
 </template>
 

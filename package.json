@@ -49,14 +49,19 @@
       "parser": "babel-eslint"
     }
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
     }
   },
   "browserslist": [
-    "> 1%",
     "last 2 versions",
+    "> 1%",
     "not ie <= 8"
   ]
 }
