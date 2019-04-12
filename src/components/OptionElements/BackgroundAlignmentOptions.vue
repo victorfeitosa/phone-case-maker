@@ -60,7 +60,7 @@ export default {
     BackgroundOption
   },
   methods: {
-    doSomething: function() {
+    doSomething: () => {
       console.log('DOES SOMETHING');
     }
   }

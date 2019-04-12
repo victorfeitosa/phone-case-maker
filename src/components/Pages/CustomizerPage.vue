@@ -55,7 +55,7 @@ export default {
 .page {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
-  max-height: 80vh;
+  // max-height: 80vh;
 }
 </style>
 

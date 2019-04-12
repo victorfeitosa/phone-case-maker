@@ -7,18 +7,27 @@
 
     <!-- Element Options -->
     <v-flex text-xs-left>
-      <ElementOption icon="insert_emoticon" label="Add a Sticker" />
-      <ElementOption icon="text_fields" label="Add a Text Element" />
+      <ElementOption
+        icon="insert_emoticon"
+        label="Add a Sticker"
+        @click="setSelectedOptionElement('sticker')"
+      />
+      <ElementOption
+        icon="text_fields"
+        label="Add a Text Element"
+        @click="setSelectedOptionElement('text')"
+      />
     </v-flex>
 
     <!-- Element Properties -->
     <v-flex class="scroll-y" max-height="250">
-      <ElementProperties tab-active="sticker" />
+      <ElementProperties :tab-active="selectedOptionElement" />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import ElementOption from '../OptionElements/ElementOption';
 import ElementProperties from '../OptionElements/ElementProperties';
 
@@ -26,6 +35,13 @@ export default {
   components: {
     ElementOption,
     ElementProperties
+  },
+  computed: {
+    ...mapGetters(['selectedOptionElement']),
+    ...mapState(['optionElement'])
+  },
+  methods: {
+    ...mapMutations(['setSelectedOptionElement'])
   }
 };
 </script>

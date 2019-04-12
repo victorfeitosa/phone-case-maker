@@ -1,16 +1,27 @@
 <template>
-  <div class="drop-area" @dragover="dragOver" @drop="drop"></div>
+  <div class="drop-area" @dragover="dragOver" @drop="drop">
+    <div
+      class="drop-area__background"
+      :style="{ backgroundImage: backgroundUrl }"
+    ></div>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
+  computed: {
+    backgroundUrl() {
+      return `url("${this.caseBackground()}")`;
+    }
+  },
   methods: {
-    dragOver: function(e) {
+    ...mapGetters(['caseBackground']),
+    dragOver: e => {
       e.preventDefault();
     },
-    drop: function(e) {
+    drop: e => {
       e.preventDefault();
-      console.log(e.layerX, e.layerY);
     }
   }
 };
@@ -24,6 +35,17 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+
+  &__background {
+    background-size: 100% 100%;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>
 

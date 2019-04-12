@@ -15,7 +15,11 @@
           <h3 class="subheading text-xs-left">Images</h3>
         </v-flex>
         <v-flex xs12 md8 align-center text-xs-left>
-          <BackgroundItem v-for="key in 4" :key="key" />
+          <BackgroundItem src="" />
+          <BackgroundItem src="/images/backgrounds/sunset.jpg" />
+          <BackgroundItem src="/images/backgrounds/cacti.jpg" />
+          <BackgroundItem src="/images/backgrounds/lama.jpg" />
+          <BackgroundItem src="/images/backgrounds/stripes.jpg" />
         </v-flex>
         <v-flex xs12 md4 pa-0>
           <v-btn small dark color="blue">Upload Image</v-btn>
