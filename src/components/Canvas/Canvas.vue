@@ -1,5 +1,6 @@
 <template>
   <div class="phone-canvas">
+    <TransformWidget />
     <div class="phone-canvas__inner">
       <PhoneFrame />
       <DropArea />
@@ -14,13 +15,15 @@ import DropArea from './DropArea';
 import PhoneFrame from './PhoneFrame';
 import PhoneForeground from './PhoneForeground';
 import PrintCanvas from './PrintCanvas';
+import TransformWidget from '../ControlElements/TransformWidget';
 
 export default {
   components: {
     DropArea,
     PhoneFrame,
     PhoneForeground,
-    PrintCanvas
+    PrintCanvas,
+    TransformWidget
   }
 };
 </script>
@@ -31,6 +34,7 @@ $frame-height: 541px;
 
 .phone-canvas {
   overflow: hidden;
+  position: relative;
 
   &__inner {
     border: 1px dashed #ddd;

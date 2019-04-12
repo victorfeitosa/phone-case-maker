@@ -13,6 +13,7 @@
       <StickerItem src="images/stickers/cute/kiss.svg" alt="kiss" />
       <StickerItem src="images/stickers/cute/pot.svg" alt="pot" />
       <StickerItem src="images/stickers/cute/fries.svg" alt="fries" />
+      <StickerItem src="images/stickers/cute/happy.svg" alt="fries" />
     </v-layout>
   </v-container>
 </template>

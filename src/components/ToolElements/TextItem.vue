@@ -68,7 +68,7 @@ export default {
     display: inline-block;
     font-size: 24px;
     max-width: 101%;
-    transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, text-shadow 0.15s ease-in-out;
   }
 }
 </style>

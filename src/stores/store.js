@@ -104,10 +104,15 @@ const store = new Vuex.Store({
       state.case.backgroundImage = background;
     },
     setTextColor(state, color) {
+      if (state.selectedElement && state.selectedElement.type === 'text') {
+        //TODO: put text color to selected element
+        return;
+      }
       state.selectedFontColor = color;
     },
     setElementText(state, text) {
       if (state.selectedElement && state.selectedElement.type === 'text') {
+        //TODO: put text to selected element
         return;
       }
       state.text = text;
