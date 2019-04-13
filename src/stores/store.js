@@ -17,6 +17,7 @@ const defaultState = {
   selectedStickerOption: null,
   selectedFontOption: null,
   selectedFontColor: 'default',
+
   colors: [
     {
       name: 'default',
@@ -90,7 +91,7 @@ const store = new Vuex.Store({
       return state.colors;
     },
     previewText(state) {
-      return state.text;
+      return state.text || '';
     },
     previewTextColor(state) {
       return state.selectedFontColor;
