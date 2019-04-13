@@ -22,7 +22,7 @@
           <BackgroundItem src="/images/backgrounds/stripes.jpg" />
         </v-flex>
         <v-flex xs12 md4 pa-0>
-          <v-btn small dark color="blue">Upload Image</v-btn>
+          <v-btn small dark color="cyan">Upload Image</v-btn>
         </v-flex>
       </v-layout>
 

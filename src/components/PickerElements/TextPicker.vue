@@ -3,7 +3,11 @@
     <v-layout row wrap align-baseline>
       <!-- Text Input -->
       <v-flex md12 lg6>
-        <v-text-field label="Text" @input="setElementText"></v-text-field>
+        <v-text-field
+          label="Text"
+          @input="setElementText"
+          :placeholder="prevText"
+        ></v-text-field>
       </v-flex>
       <v-spacer />
       <!-- Color Picker -->
@@ -32,7 +36,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 import TextItem from '../ToolElements/TextItem';
 import ColorPicker from '../PickerElements/ColorPicker';
 
@@ -41,7 +45,13 @@ export default {
     TextItem,
     ColorPicker
   },
+  computed: {
+    prevText() {
+      return this.previewText();
+    }
+  },
   methods: {
+    ...mapGetters(['previewText']),
     ...mapMutations(['setElementText'])
   }
 };

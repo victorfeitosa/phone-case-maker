@@ -1,5 +1,5 @@
 <template>
-  <h2 class="title">PENIS</h2>
+  <h2 class="title">Some text</h2>
 </template>
 
 <script>
