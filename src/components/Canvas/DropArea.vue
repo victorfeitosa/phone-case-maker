@@ -16,11 +16,11 @@ import CanvasText from '../DropElements/CanvasText';
 export default {
   computed: {
     backgroundUrl() {
-      return `url("${this.caseBackground()}")`;
+      return `url("${this.backgroundImage()}")`;
     }
   },
   methods: {
-    ...mapGetters(['caseBackground']),
+    ...mapGetters({ backgroundImage: 'background/backgroundImage' }),
     dragOver(e) {
       e.preventDefault();
     },
@@ -34,13 +34,11 @@ export default {
       });
       const element = elementComponent.$el;
 
-      console.log(e);
-
       if (dropData.type === 'sticker') {
         //Sets size and position
         const canvasRect = this.$el.getBoundingClientRect();
-        const pX = e.pageX - canvasRect.left - dropData.width / 2;
-        const pY = e.pageY - canvasRect.top - dropData.height / 2;
+        const pX = e.clientX - canvasRect.left - dropData.width / 2;
+        const pY = e.clientY - canvasRect.top - dropData.height / 2;
 
         element.style.width = `${dropData.width}px`;
         element.style.height = `${dropData.height}px`;
@@ -48,9 +46,9 @@ export default {
         element.style.top = `${pY}px`;
       }
 
-      // Set mutation to select this canvas item
+      // TODO: Set mutation to select this canvas item
 
-      // Setup transform widget widget and hide canvas element so  the transform widget can transform it
+      // TODO: Setup transform widget widget and hide canvas element so  the transform widget can transform it
       this.$nextTick(() => {
         // element.style.display = 'none';
       });

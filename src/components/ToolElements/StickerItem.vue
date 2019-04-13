@@ -39,6 +39,7 @@ export default {
     border: 2px dashed transparent;
     border-radius: 8px;
     cursor: grab;
+    transform-origin: 50% 50%;
     transition: border 0.15s ease-in-out;
 
     &:hover {

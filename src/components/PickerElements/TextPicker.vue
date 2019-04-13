@@ -5,8 +5,8 @@
       <v-flex md12 lg6>
         <v-text-field
           label="Text"
-          @input="setElementText"
-          :placeholder="prevText"
+          @input="setText"
+          :placeholder="text"
         ></v-text-field>
       </v-flex>
       <v-spacer />
@@ -46,13 +46,10 @@ export default {
     ColorPicker
   },
   computed: {
-    prevText() {
-      return this.previewText();
-    }
+    ...mapGetters({ text: 'controlProperties/getText' })
   },
   methods: {
-    ...mapGetters(['previewText']),
-    ...mapMutations(['setElementText'])
+    ...mapMutations({ setText: 'controlProperties/setText' })
   }
 };
 </script>

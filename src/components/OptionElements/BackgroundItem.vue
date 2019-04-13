@@ -4,7 +4,7 @@
     :style="{
       backgroundImage: backgroundUrl
     }"
-    @click="setCaseBackground(src)"
+    @click="setBackgroundImage(src)"
   ></div>
 </template>
 
@@ -23,7 +23,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setCaseBackground'])
+    ...mapMutations({
+      setBackgroundImage: 'background/setBackgroundImage'
+    })
   }
 };
 </script>

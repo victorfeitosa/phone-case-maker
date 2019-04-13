@@ -1,4 +1,5 @@
 const backgroundProperties = {
+  namespaced: true,
   state: {
     backgroundImage: '',
     backgroundSize: '100% 100%',
@@ -6,25 +7,34 @@ const backgroundProperties = {
     alignY: 'top',
   },
   getters: {
-    caseBackground(state) {
+    backgroundImage(state) {
       return state.backgroundImage;
-    },
-    backgroundAlignX(state) {
-      return state.alignX;
-    },
-    backgroundAlignY(state) {
-      return state.alignY;
     },
     backgroundSize(state) {
       return state.backgroundSize;
-    }
+    },
+    alignX(state) {
+      return state.alignX;
+    },
+    alignY(state) {
+      return state.alignY;
+    },
   },
-  mutation: {
-
+  mutations: {
+    setBackgroundImage(state, backgroundImage) {
+      state.backgroundImage = backgroundImage;
+    },
+    setBackgroundSize(state, size) {
+      state.backgroundSize = size;
+    },
+    setlignX(state, alignX) {
+      state.alignX = alignX;
+    },
+    setlignY(state, alignY) {
+      state.alignY = alignY;
+    },
   },
-  actions: {
-
-  }
+  actions: {}
 };
 
 export default backgroundProperties;

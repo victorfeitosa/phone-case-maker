@@ -22,24 +22,22 @@ export default {
     }
   },
   computed: {
-    text() {
-      return this.previewText();
-    },
+    ...mapGetters({
+      palette: 'palette/colors',
+      getColor: 'palette/color',
+      text: 'controlProperties/getText',
+      fontColor: 'controlProperties/getSelectedFontColor'
+    }),
     textColor() {
-      const selectedColor =
-        this.colorPalette().filter(
-          c => c.name === this.previewTextColor()
-        )[0] || this.colorPalette()[0];
-      return selectedColor.value;
+      return this.getColor(this.fontColor).value;
     },
     textShadow() {
-      return this.previewTextColor() === 'white'
+      return this.fontColor === 'white'
         ? '-1px -1px 0 #757575, 1px -1px 0 #757575, -1px 1px 0 #757575, 1px 1px 0 #757575'
         : '';
     }
   },
   methods: {
-    ...mapGetters(['colorPalette', 'previewText', 'previewTextColor']),
     dragStart(e) {
       e.dataTransfer.setData('type', 'text');
       e.dataTransfer.setData('font', this.font);

@@ -2,7 +2,7 @@
   <v-flex>
     <div
       class="color-option"
-      @click="setTextColor(color)"
+      @click="setFontColor(color)"
       :style="{ backgroundColor: hexColor }"
     ></div>
   </v-flex>
@@ -19,14 +19,12 @@ export default {
     }
   },
   methods: {
-    ...mapGetters(['colorPalette']),
-    ...mapMutations(['setTextColor'])
+    ...mapMutations({ setFontColor: 'controlProperties/setSelectedFontColor' })
   },
   computed: {
+    ...mapGetters({ colors: 'palette/colors', getColor: 'palette/color' }),
     hexColor() {
-      const pickedColor =
-        this.colorPalette().filter(p => p.name === this.color)[0] ||
-        this.colorPalette().default;
+      const pickedColor = this.getColor(this.color);
       return pickedColor.value;
     }
   }

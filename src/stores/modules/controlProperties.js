@@ -1,14 +1,48 @@
 const controlProperties = {
+  namespaced: true,
   state: {
-    optionElement: 'sticker',
+    namespaced: true,
+    elementType: 'sticker',
     text: 'A little text',
-    selectedElement: null,
-    selectedStickerOption: null,
-    selectedFontOption: null,
+    selectedCanvasElement: '',
+
+    selectedFont: null,
     selectedFontColor: 'default',
   },
-  getters: {},
-  mutations: {},
+  getters: {
+    getElementType(state) {
+      return state.elementType;
+    },
+    getText(state) {
+      return state.text;
+    },
+    getSelectedCanvasElement(state) {
+      return state.selectedCanvasElement;
+    },
+    getSelectedFont(state) {
+      return state.selectedFont;
+    },
+    getSelectedFontColor(state) {
+      return state.selectedFontColor;
+    },
+  },
+  mutations: {
+    setElementType(state, elementType) {
+      state.elementType = elementType;
+    },
+    setText(state, text) {
+      state.text = text;
+    },
+    setSelectedCanvasElement(state, elementId) {
+      state.selectedCanvasElement = elementId;
+    },
+    setSelectedFont(state, font) {
+      state.selectedFont = font;
+    },
+    setSelectedFontColor(state, colorName) {
+      state.selectedFontColor = colorName;
+    },
+  },
   actions: {}
 };
 

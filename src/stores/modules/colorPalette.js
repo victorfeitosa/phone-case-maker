@@ -1,4 +1,5 @@
 const colorPalette = {
+  namespaced: true,
   state: {
     colors: [
       {
@@ -44,7 +45,14 @@ const colorPalette = {
     ]
   },
   getters: {
-
+    colors(state) {
+      return state.colors;
+    },
+    color(state) {
+      return (name) => {
+        return state.colors.find(c => c.name === name) || state.colors[0];
+      };
+    }
   }
 };
 
