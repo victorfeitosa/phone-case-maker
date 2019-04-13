@@ -1,5 +1,5 @@
 <template>
-  <div class="widget" id="widget">
+  <div class="widget" ref="widget" :style="{ display: visible }">
     <div icon flat color="red" class="t-btn t-btn--delete" title="Delete">
       <i class="material-icons">delete</i>
     </div>
@@ -101,6 +101,9 @@ export default {
   computed: {
     childElement() {
       return null;
+    },
+    visible() {
+      return this.selectedElement ? 'inline-block' : 'none';
     }
   },
   methods: {
@@ -114,7 +117,6 @@ export default {
       this.moving = false;
     },
     dragMove(e) {
-      e.preventDefault();
       if (this.moving) {
         this.pX = e.clientX - this.enterX;
         this.pY = e.clientY - this.enterY;
@@ -136,7 +138,6 @@ export default {
       this.oldAngle = this.angle;
     },
     dragRotate(e) {
-      e.preventDefault();
       if (this.rotating) {
         this.angle = toAngle(Math.atan2(e.clientY - this.enterY, e.clientX - this.enterX));
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
@@ -158,8 +159,6 @@ export default {
       this.oldScale = this.scale;
     },
     dragScale(e) {
-      e.preventDefault();
-
       if (this.scaling) {
         const coef = distance(this.enterX, this.enterY, e.clientX, e.clientY) / this.enterScale;
         this.scale = this.oldScale * coef;

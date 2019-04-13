@@ -1,12 +1,12 @@
 <template>
   <div class="phone-canvas">
-    <TransformWidget />
     <div class="phone-canvas__inner">
       <PhoneFrame />
       <DropArea />
       <PhoneForeground />
       <PrintCanvas />
     </div>
+    <TransformWidget />
   </div>
 </template>
 

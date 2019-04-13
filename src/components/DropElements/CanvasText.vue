@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <h2 class="title">PENIS</h2>
+</template>
 
 <script>
 export default {};

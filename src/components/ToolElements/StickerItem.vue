@@ -21,8 +21,13 @@ export default {
   },
   methods: {
     dragStart(e) {
-      e.dataTransfer.setData('type', 'sticker');
-      e.dataTransfer.setData('src', this.src);
+      const data = {
+        type: 'sticker',
+        src: this.src,
+        height: this.$el.offsetHeight,
+        width: this.$el.offsetWidth
+      };
+      e.dataTransfer.setData('data', JSON.stringify(data));
     }
   }
 };

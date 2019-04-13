@@ -1,5 +1,5 @@
 <template>
-  <div class="drop-area" @dragover="dragOver" @drop="drop">
+  <div ref="canvas" class="drop-area" @dragover="dragOver" @drop="drop">
     <div
       class="drop-area__background"
       :style="{ backgroundImage: backgroundUrl }"
@@ -9,6 +9,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { mountComponentToParent } from '../../utils/componentUtils.js';
+import CanvasSticker from '../DropElements/CanvasSticker';
+import CanvasText from '../DropElements/CanvasText';
+
 export default {
   computed: {
     backgroundUrl() {
@@ -17,11 +21,39 @@ export default {
   },
   methods: {
     ...mapGetters(['caseBackground']),
-    dragOver: e => {
+    dragOver(e) {
       e.preventDefault();
     },
-    drop: e => {
-      e.preventDefault();
+    drop(e) {
+      const dropData = JSON.parse(e.dataTransfer.getData('data'));
+      const elToBuild = { sticker: CanvasSticker, text: CanvasText };
+
+      // Add canvas element to the canvas
+      const elementComponent = mountComponentToParent(elToBuild[dropData.type], this.$refs.canvas, {
+        src: dropData.src
+      });
+      const element = elementComponent.$el;
+
+      console.log(e);
+
+      if (dropData.type === 'sticker') {
+        //Sets size and position
+        const canvasRect = this.$el.getBoundingClientRect();
+        const pX = e.pageX - canvasRect.left - dropData.width / 2;
+        const pY = e.pageY - canvasRect.top - dropData.height / 2;
+
+        element.style.width = `${dropData.width}px`;
+        element.style.height = `${dropData.height}px`;
+        element.style.left = `${pX}px`;
+        element.style.top = `${pY}px`;
+      }
+
+      // Set mutation to select this canvas item
+
+      // Setup transform widget widget and hide canvas element so  the transform widget can transform it
+      this.$nextTick(() => {
+        // element.style.display = 'none';
+      });
     }
   }
 };
