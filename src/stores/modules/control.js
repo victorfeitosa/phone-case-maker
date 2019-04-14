@@ -36,6 +36,9 @@ const control = {
     setSelectedCanvasElement(state, elementId) {
       state.selectedCanvasElement = elementId;
     },
+    deselectCanvasElement(state) {
+      state.selectedCanvasElement = null;
+    },
     setSelectedFont(state, font) {
       state.selectedFont = font;
     },

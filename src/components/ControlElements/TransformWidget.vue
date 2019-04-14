@@ -1,6 +1,6 @@
 <template>
   <div class="widget" ref="widget" :style="{ display: visible }">
-    <div icon flat color="red" class="t-btn t-btn--delete" title="Delete">
+    <div icon color="red" class="t-btn t-btn--delete" title="Delete">
       <i class="material-icons">delete</i>
     </div>
     <div
@@ -47,7 +47,7 @@
 
 <script>
 import { toAngle, toRad, distance } from '../../utils/math.js';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   mounted() {
@@ -64,6 +64,7 @@ export default {
       document.addEventListener('mouseup', this.endMove);
       document.addEventListener('mouseup', this.endRotate);
       document.addEventListener('mouseup', this.endScale);
+      document.addEventListener('mousedown', this.deselect);
 
       document.addEventListener('mousemove', this.dragMove);
       document.addEventListener('mousemove', this.dragRotate);
@@ -79,6 +80,8 @@ export default {
       forwardTool: null,
       backwardTool: null,
       deleteTool: null,
+
+      childElement: null,
 
       //Control variables
       //Flags
@@ -101,30 +104,41 @@ export default {
   },
   computed: {
     ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement' }),
-    childElement() {
-      const elementId = this.selectedElementId;
-      console.log(elementId);
-      if (elementId) {
-        return document.querySelector(`[data-uid: ${elementId}]`);
-      }
-      return null;
-    },
+
     visible() {
       return this.selectedElementId ? 'inline-block' : 'none';
     }
   },
+  watch: {
+    selectedElementId() {
+      this.childElement = document.querySelector(`[data-uid="${this.selectedElementId}"]`);
+      if (this.childElement) {
+        // TODO: adapt to child position, width and height
+        this.matchTransform(this.childElement);
+      }
+    }
+  },
   methods: {
+    ...mapMutations({ deselectCanvasElement: 'control/deselectCanvasElement' }),
+    deselect(e) {
+      const outsideWidget = e.target.parentElement !== this.$el;
+      if (!(this.moving || this.rotating || this.scaling) && outsideWidget) {
+        this.deselectCanvasElement();
+      }
+    },
     // Move methods
     startMove(e) {
       this.moving = true;
       this.enterX = e.clientX - this.pX;
       this.enterY = e.clientY - this.pY;
     },
-    endMove() {
+    // on document
+    endMove(e) {
       this.moving = false;
+      e.stopPropagation();
     },
     dragMove(e) {
-      if (this.moving) {
+      if (this.moving && this.visible) {
         this.pX = e.clientX - this.enterX;
         this.pY = e.clientY - this.enterY;
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
@@ -133,19 +147,22 @@ export default {
       }
     },
 
-    //Rotate methods
+    // Rotate methods
     startRotate() {
       const widget = this.$el;
       this.rotating = true;
       this.enterX = this.pX + widget.offsetWidth / 2;
       this.enterY = this.pY + widget.offsetHeight / 2;
     },
-    endRotate() {
+    // on document
+    endRotate(e) {
       this.rotating = false;
       this.oldAngle = this.angle;
+      e.stopPropagation();
     },
     dragRotate(e) {
-      if (this.rotating) {
+      if (this.rotating && this.visible) {
+        e.preventDefault();
         this.angle = toAngle(Math.atan2(e.clientY - this.enterY, e.clientX - this.enterX));
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
         this.applyTransform(this.childElement, transform);
@@ -161,18 +178,55 @@ export default {
       this.enterY = this.pY + widget.offsetHeight / 2;
       this.enterScale = distance(this.enterX, this.enterY, e.clientX, e.clientY);
     },
-    endScale() {
+    // on document
+    endScale(e) {
       this.scaling = false;
       this.oldScale = this.scale;
+      e.stopPropagation();
     },
     dragScale(e) {
-      if (this.scaling) {
+      if (this.scaling && this.visible) {
         const coef = distance(this.enterX, this.enterY, e.clientX, e.clientY) / this.enterScale;
         this.scale = this.oldScale * coef;
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
         this.applyTransform(this.childElement, transform);
         return transform;
       }
+    },
+
+    // Match widget transform to element
+    matchTransform(element) {
+      const widget = this.$el;
+
+      // Matches the widget transform to the element transform
+      const width = element.clientWidth;
+      const height = element.clientHeight;
+      const left = element.offsetLeft;
+      const top = element.offsetTop;
+      const transform = element.style.transform;
+
+      widget.style.width = `${width + 2}px`;
+      widget.style.height = `${height + 2}px`;
+      widget.style.left = `${left}px`;
+      widget.style.top = `${top}px`;
+      widget.style.transform = transform;
+
+      // Reset control variables
+      this.moving = false;
+      this.rotating = false;
+      this.scaling = false;
+
+      //Position control
+      this.pX = left;
+      this.pY = top;
+      this.enterX = 0;
+      this.enterY = 0;
+      this.enterScale = 1.0;
+
+      //Scale control
+      this.angle = 0;
+      this.scale = 1.0;
+      this.oldScale = 1.0;
     },
 
     // Apply transformations
@@ -205,7 +259,9 @@ export default {
       const left = transform.translate.x;
 
       this.applyTransformProperties(widget, width, height, top, left, transform.rotate);
-      // this.applyTransformProperties(element, width, height, top, left, transform.rotate);
+      if (element) {
+        this.applyTransformProperties(element, width, height, top, left, transform.rotate);
+      }
     }
   }
 };
@@ -218,13 +274,8 @@ $anim: 0.05s ease-in-out;
 .widget {
   display: inline-block;
   position: absolute;
-  transform-origin: 50% 50%;
+  // transform-origin: 50% 50%;
   z-index: 10;
-
-  width: 100px;
-  height: 100px;
-  top: 0;
-  left: 0;
 
   &__container {
     border: 1px solid #eeaaaa;
@@ -294,6 +345,7 @@ $anim: 0.05s ease-in-out;
 
   i {
     font-size: 18px;
+    pointer-events: none;
   }
 }
 </style>

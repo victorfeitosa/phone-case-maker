@@ -64,11 +64,9 @@ export default {
       }
 
       this.$nextTick(() => {
-        const elementData = { ...elementInstance._data, ...elementInstance._props };
+        const elementData = { ...elementInstance._data, ...elementInstance._props, transforms: {} };
         this.addCanvasElement(elementData);
         this.setSelectedCanvasElement(uid);
-
-        // element.style.display = 'none';
       });
     }
   }
@@ -86,6 +84,7 @@ export default {
 
   &__background {
     background-size: 100% 100%;
+    border-radius: 32px;
     pointer-events: none;
     position: absolute;
     top: 0;

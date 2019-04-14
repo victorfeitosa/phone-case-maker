@@ -8,7 +8,9 @@ const canvasElements = {
       return state.elements;
     },
     getElement(state, elementId) {
-      return state.elements.fitler(e => e.id === elementId)[0] || null;
+      if (state.elements.length) {
+        return state.elements.find(e => e.id === elementId) || null;
+      }
     }
   },
   mutations: {

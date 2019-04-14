@@ -2,13 +2,14 @@
   <h2
     class="canvas-text"
     :style="{ fontFamily: font, color: color, textShadow }"
+    @click="select"
   >
     {{ text }}
   </h2>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import uuid from 'uuid';
 
 export default {
@@ -34,6 +35,12 @@ export default {
       return this.fontColor === 'white'
         ? '-1px -1px 0 #757575, 1px -1px 0 #757575, -1px 1px 0 #757575, 1px 1px 0 #757575'
         : '';
+    }
+  },
+  methods: {
+    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement' }),
+    select() {
+      this.setSelectedCanvasElement(this.id);
     }
   },
   created() {
