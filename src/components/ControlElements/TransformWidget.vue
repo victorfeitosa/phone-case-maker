@@ -101,7 +101,9 @@ export default {
       //Scale control
       angle: 0,
       scale: 1.0,
-      oldScale: 1.0
+      oldScale: 1.0,
+      initialWidth: 0,
+      initialHeight: 0
     };
   },
   computed: {
@@ -246,6 +248,8 @@ export default {
       this.angle = 0;
       this.scale = 1.0;
       this.oldScale = 1.0;
+      this.initialWidth = width;
+      this.initialHeight = height;
     },
 
     // Apply transformations
@@ -272,8 +276,8 @@ export default {
       console.log(transform);
       if (!transform || !transform.translate || !transform.scale) return;
 
-      const width = widget.initialWidth * transform.scale;
-      const height = widget.initialHeight * transform.scale;
+      const width = this.initialWidth * transform.scale;
+      const height = this.initialHeight * transform.scale;
 
       const top = transform.translate.y;
       const left = transform.translate.x;

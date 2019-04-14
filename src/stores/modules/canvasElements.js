@@ -11,6 +11,9 @@ const canvasElements = {
       if (state.elements.length) {
         return state.elements.find(e => e.id === elementId) || null;
       }
+    },
+    numElements(state) {
+      return state.elements.length;
     }
   },
   mutations: {
