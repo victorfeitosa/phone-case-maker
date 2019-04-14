@@ -7,8 +7,9 @@
       icon
       flat
       color="grey darken-3"
-      class="t-btn t-btn--flip-back"
+      class="t-btn t-btn--flip-front"
       title="Bring forward"
+      @click="brignForward"
     >
       <i class="material-icons">flip_to_front</i>
     </div>
@@ -16,8 +17,9 @@
       icon
       flat
       color="grey darken-3"
-      class="t-btn t-btn--flip-front"
+      class="t-btn t-btn--flip-back"
       title="Send backward"
+      @click="sendBackward"
     >
       <i class="material-icons">flip_to_back</i>
     </div>
@@ -113,7 +115,6 @@ export default {
     selectedElementId() {
       this.childElement = document.querySelector(`[data-uid="${this.selectedElementId}"]`);
       if (this.childElement) {
-        // TODO: adapt to child position, width and height
         this.matchTransform(this.childElement);
       }
     }
@@ -124,6 +125,22 @@ export default {
       const outsideWidget = e.target.parentElement !== this.$el;
       if (!(this.moving || this.rotating || this.scaling) && outsideWidget) {
         this.deselectCanvasElement();
+      }
+    },
+    // Button Methods
+    sendBackward() {
+      const child = this.childElement;
+      if (child) {
+        const z = parseInt(child.style.zIndex);
+        child.style.zIndex = Math.max(z - 1, 0);
+      }
+    },
+    brignForward() {
+      // TODO: count max number of objects to get limit to zIndex
+      const child = this.childElement;
+      if (child) {
+        const z = parseInt(child.style.zIndex);
+        child.style.zIndex = Math.min(z + 1, 100);
       }
     },
     // Move methods
@@ -143,6 +160,7 @@ export default {
         this.pY = e.clientY - this.enterY;
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
         this.applyTransform(this.childElement, transform);
+        e.preventDefault();
         return transform;
       }
     },
@@ -162,10 +180,10 @@ export default {
     },
     dragRotate(e) {
       if (this.rotating && this.visible) {
-        e.preventDefault();
         this.angle = toAngle(Math.atan2(e.clientY - this.enterY, e.clientX - this.enterX));
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
         this.applyTransform(this.childElement, transform);
+        e.preventDefault();
         return transform;
       }
     },
@@ -190,6 +208,7 @@ export default {
         this.scale = this.oldScale * coef;
         const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
         this.applyTransform(this.childElement, transform);
+        e.preventDefault();
         return transform;
       }
     },
@@ -205,10 +224,10 @@ export default {
       const top = element.offsetTop;
       const transform = element.style.transform;
 
-      widget.style.width = `${width + 2}px`;
-      widget.style.height = `${height + 2}px`;
-      widget.style.left = `${left}px`;
-      widget.style.top = `${top}px`;
+      widget.style.width = `${width}px`;
+      widget.style.height = `${height}px`;
+      widget.style.left = `${left - 1}px`;
+      widget.style.top = `${top - 1}px`;
       widget.style.transform = transform;
 
       // Reset control variables
@@ -250,7 +269,8 @@ export default {
     ) {
       const widget = this.$el;
       // Check if transform is valid
-      if (!transform || !transform.translate || !transform.rotate || !transform.scale) return;
+      console.log(transform);
+      if (!transform || !transform.translate || !transform.scale) return;
 
       const width = widget.initialWidth * transform.scale;
       const height = widget.initialHeight * transform.scale;
@@ -269,16 +289,16 @@ export default {
 
 <style lang="scss" scoped>
 $btn-size: 1.75rem;
-$anim: 0.05s ease-in-out;
 
 .widget {
   display: inline-block;
   position: absolute;
-  // transform-origin: 50% 50%;
-  z-index: 10;
+  transform-origin: 50% 50%;
+  z-index: 101;
 
   &__container {
     border: 1px solid #eeaaaa;
+    box-sizing: content-box;
     cursor: move;
     height: 100%;
     width: 100%;
@@ -298,7 +318,7 @@ $anim: 0.05s ease-in-out;
   position: absolute;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     color 0.15s ease-in-out;
-  z-index: 2;
+  z-index: 101;
 
   &:hover {
     background-color: #2196f3;
@@ -319,13 +339,13 @@ $anim: 0.05s ease-in-out;
     }
   }
 
-  &--flip-front {
+  &--flip-back {
     border-radius: 50% 50% 0 0;
     bottom: calc(50% - 1px);
     left: -$btn-size;
   }
 
-  &--flip-back {
+  &--flip-front {
     border-radius: 0 0 50% 50%;
     left: -$btn-size;
     top: calc(50% - 1px);

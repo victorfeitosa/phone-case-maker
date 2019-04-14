@@ -34,6 +34,7 @@ export default {
       element.style.height = `${dropData.height}px`;
       element.style.left = `${pX}px`;
       element.style.top = `${pY}px`;
+      element.style.zIndex = 0;
     },
     setupDropText(event, dropData, element) {
       const canvasRect = this.$el.getBoundingClientRect();
@@ -43,6 +44,7 @@ export default {
       element.style.fontSize = '24px';
       element.style.left = `${pX}px`;
       element.style.top = `${pY}px`;
+      element.style.zIndex = 0;
     },
     dragOver(e) {
       e.preventDefault();
