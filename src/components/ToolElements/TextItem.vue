@@ -25,8 +25,8 @@ export default {
     ...mapGetters({
       palette: 'palette/colors',
       getColor: 'palette/color',
-      text: 'controlProperties/getText',
-      fontColor: 'controlProperties/getSelectedFontColor'
+      text: 'control/getText',
+      fontColor: 'control/getSelectedFontColor'
     }),
     textColor() {
       return this.getColor(this.fontColor).value;
@@ -39,9 +39,16 @@ export default {
   },
   methods: {
     dragStart(e) {
-      e.dataTransfer.setData('type', 'text');
-      e.dataTransfer.setData('font', this.font);
-      e.dataTransfer.setData('text', this.text);
+      const data = {
+        type: 'text',
+        props: {
+          font: this.font,
+          color: this.textColor
+        },
+        enterX: e.layerX,
+        enterY: e.layerY
+      };
+      e.dataTransfer.setData('data', JSON.stringify(data));
     }
   }
 };

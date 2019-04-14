@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { mountComponentToParent } from '../../utils/componentUtils.js';
 import CanvasSticker from '../DropElements/CanvasSticker';
 import CanvasText from '../DropElements/CanvasText';
@@ -21,6 +21,29 @@ export default {
   },
   methods: {
     ...mapGetters({ backgroundImage: 'background/backgroundImage' }),
+    ...mapMutations({
+      setSelectedCanvasElement: 'control/setSelectedCanvasElement',
+      addCanvasElement: 'canvas/addElement'
+    }),
+    setupDropSticker(event, dropData, element) {
+      const canvasRect = this.$el.getBoundingClientRect();
+      const pX = event.clientX - canvasRect.left - dropData.enterX;
+      const pY = event.clientY - canvasRect.top - dropData.enterY;
+      //Sets size and position
+      element.style.width = `${dropData.width}px`;
+      element.style.height = `${dropData.height}px`;
+      element.style.left = `${pX}px`;
+      element.style.top = `${pY}px`;
+    },
+    setupDropText(event, dropData, element) {
+      const canvasRect = this.$el.getBoundingClientRect();
+      const pX = event.clientX - canvasRect.left - element.offsetWidth / 2;
+      const pY = event.clientY - canvasRect.top - element.offsetHeight / 2;
+      //Sets font size and position
+      element.style.fontSize = '24px';
+      element.style.left = `${pX}px`;
+      element.style.top = `${pY}px`;
+    },
     dragOver(e) {
       e.preventDefault();
     },
@@ -29,27 +52,22 @@ export default {
       const elToBuild = { sticker: CanvasSticker, text: CanvasText };
 
       // Add canvas element to the canvas
-      const elementComponent = mountComponentToParent(elToBuild[dropData.type], this.$refs.canvas, {
-        src: dropData.src
-      });
-      const element = elementComponent.$el;
+      const elementInstance = mountComponentToParent(elToBuild[dropData.type], this.$refs.canvas, dropData.props);
+      const element = elementInstance.$el;
+      const uid = (element.dataset.uid = elementInstance.id);
+      element.dataset.uid = uid;
 
       if (dropData.type === 'sticker') {
-        //Sets size and position
-        const canvasRect = this.$el.getBoundingClientRect();
-        const pX = e.clientX - canvasRect.left - dropData.width / 2;
-        const pY = e.clientY - canvasRect.top - dropData.height / 2;
-
-        element.style.width = `${dropData.width}px`;
-        element.style.height = `${dropData.height}px`;
-        element.style.left = `${pX}px`;
-        element.style.top = `${pY}px`;
+        this.setupDropSticker(e, dropData, element);
+      } else if (dropData.type === 'text') {
+        this.setupDropText(e, dropData, element);
       }
 
-      // TODO: Set mutation to select this canvas item
-
-      // TODO: Setup transform widget widget and hide canvas element so  the transform widget can transform it
       this.$nextTick(() => {
+        const elementData = { ...elementInstance._data, ...elementInstance._props };
+        this.addCanvasElement(elementData);
+        this.setSelectedCanvasElement(uid);
+
         // element.style.display = 'none';
       });
     }

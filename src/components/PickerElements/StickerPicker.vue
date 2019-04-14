@@ -1,13 +1,6 @@
 <template>
-  <v-container grid-list-md>
-    <v-layout
-      row
-      pa-2
-      wrap
-      align-center
-      justify-space-between
-      class="sticker-picker scroll-y"
-    >
+  <v-container>
+    <v-layout row pa-2 wrap align-center class="sticker-picker scroll-y">
       <StickerItem src="images/stickers/cute/poop.svg" alt="poop" />
       <StickerItem src="images/stickers/cute/cactus.svg" alt="cactus" />
       <StickerItem src="images/stickers/cute/kiss.svg" alt="kiss" />

@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs3 mx-3 class="sticker-item">
+  <v-flex xs3 lg2 mx-3 class="sticker-item">
     <v-img
       draggable
       @dragstart="dragStart"
@@ -23,9 +23,13 @@ export default {
     dragStart(e) {
       const data = {
         type: 'sticker',
-        src: this.src,
+        props: {
+          src: this.src
+        },
         height: this.$el.offsetHeight,
-        width: this.$el.offsetWidth
+        width: this.$el.offsetWidth,
+        enterX: e.layerX,
+        enterY: e.layerY
       };
       e.dataTransfer.setData('data', JSON.stringify(data));
     }

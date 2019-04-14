@@ -47,6 +47,7 @@
 
 <script>
 import { toAngle, toRad, distance } from '../../utils/math.js';
+import { mapGetters } from 'vuex';
 
 export default {
   mounted() {
@@ -99,11 +100,17 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement' }),
     childElement() {
+      const elementId = this.selectedElementId;
+      console.log(elementId);
+      if (elementId) {
+        return document.querySelector(`[data-uid: ${elementId}]`);
+      }
       return null;
     },
     visible() {
-      return this.selectedElement ? 'inline-block' : 'none';
+      return this.selectedElementId ? 'inline-block' : 'none';
     }
   },
   methods: {

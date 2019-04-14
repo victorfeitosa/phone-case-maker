@@ -19,7 +19,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ setFontColor: 'controlProperties/setSelectedFontColor' })
+    ...mapMutations({ setFontColor: 'control/setSelectedFontColor' })
   },
   computed: {
     ...mapGetters({ colors: 'palette/colors', getColor: 'palette/color' }),

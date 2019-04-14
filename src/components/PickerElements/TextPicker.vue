@@ -46,10 +46,10 @@ export default {
     ColorPicker
   },
   computed: {
-    ...mapGetters({ text: 'controlProperties/getText' })
+    ...mapGetters({ text: 'control/getText' })
   },
   methods: {
-    ...mapMutations({ setText: 'controlProperties/setText' })
+    ...mapMutations({ setText: 'control/setText' })
   }
 };
 </script>

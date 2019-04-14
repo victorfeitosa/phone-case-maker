@@ -37,10 +37,10 @@ export default {
     ElementProperties
   },
   computed: {
-    ...mapGetters({ elementType: 'controlProperties/getElementType' })
+    ...mapGetters({ elementType: 'control/getElementType' })
   },
   methods: {
-    ...mapMutations({ setElementType: 'controlProperties/setElementType' })
+    ...mapMutations({ setElementType: 'control/setElementType' })
   }
 };
 </script>
