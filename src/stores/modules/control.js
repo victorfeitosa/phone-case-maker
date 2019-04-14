@@ -1,4 +1,4 @@
-const controlProperties = {
+const control = {
   namespaced: true,
   state: {
     namespaced: true,
@@ -46,4 +46,4 @@ const controlProperties = {
   actions: {}
 };
 
-export default controlProperties;
+export default control;
