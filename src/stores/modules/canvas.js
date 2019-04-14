@@ -7,10 +7,10 @@ const canvasElements = {
     getElements(state) {
       return state.elements;
     },
-    getElement(state, elementId) {
-      if (state.elements.length) {
+    getElement(state) {
+      return (elementId) => {
         return state.elements.find(e => e.id === elementId) || null;
-      }
+      };
     },
     numElements(state) {
       return state.elements.length;
@@ -20,14 +20,15 @@ const canvasElements = {
     addElement(state, element) {
       state.elements.push(element);
     },
-    editElement(state, payload) {
+    updateElement(state, payload) {
       state.elements = state.elements.map(element => {
         if (element.id === payload.id) {
           return { ...element, ...payload };
         }
+        return element;
       });
     },
-    removeElement(state, { id }) {
+    deleteElement(state, { id }) {
       state.elements = state.elements.filter(e => e.id !== id);
     },
   }

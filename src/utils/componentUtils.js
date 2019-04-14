@@ -13,3 +13,15 @@ export function mountComponentToParent(vueComponentToMount, parentEl, props) {
 
   return instance;
 }
+
+export function debounce(func, delay) {
+  var timeout;
+  return function () {
+    const self = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(self, args);
+    }, delay);
+  };
+}

@@ -66,7 +66,12 @@ export default {
       }
 
       this.$nextTick(() => {
-        const elementData = { ...elementInstance._data, ...elementInstance._props, transforms: {} };
+        const elementData = {
+          ...elementInstance._data,
+          ...elementInstance._props,
+          scale: 1,
+          rotate: 0
+        };
         this.addCanvasElement(elementData);
         this.setSelectedCanvasElement(uid);
       });

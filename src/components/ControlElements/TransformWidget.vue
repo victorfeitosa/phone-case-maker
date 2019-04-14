@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { toAngle, toRad, distance } from '../../utils/math.js';
+import { toAngle, toRad, angleFromTransform, distance } from '../../utils/math.js';
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
@@ -107,7 +107,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement' }),
+    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement', getElement: 'canvas/getElement' }),
 
     visible() {
       return this.selectedElementId ? 'inline-block' : 'none';
@@ -122,7 +122,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ deselectCanvasElement: 'control/deselectCanvasElement' }),
+    ...mapMutations({ deselectCanvasElement: 'control/deselectCanvasElement', updateElement: 'canvas/updateElement' }),
     deselect(e) {
       const outsideWidget = e.target.parentElement !== this.$el;
       if (!(this.moving || this.rotating || this.scaling) && outsideWidget) {
@@ -202,6 +202,11 @@ export default {
     endScale(e) {
       this.scaling = false;
       this.oldScale = this.scale;
+      // TODO: update scale of the object in the store
+      this.updateElement({
+        id: this.selectedElementId,
+        scale: 1.0
+      });
       e.stopPropagation();
     },
     dragScale(e) {
@@ -225,12 +230,17 @@ export default {
       const left = element.offsetLeft;
       const top = element.offsetTop;
       const transform = element.style.transform;
+      let angle = 0;
 
       widget.style.width = `${width}px`;
       widget.style.height = `${height}px`;
       widget.style.left = `${left - 1}px`;
       widget.style.top = `${top - 1}px`;
       widget.style.transform = transform;
+
+      if (transform) {
+        angle = angleFromTransform(transform);
+      }
 
       // Reset control variables
       this.moving = false;
@@ -245,9 +255,9 @@ export default {
       this.enterScale = 1.0;
 
       //Scale control
-      this.angle = 0;
+      this.angle = angle;
+      this.oldScale = this.scale;
       this.scale = 1.0;
-      this.oldScale = 1.0;
       this.initialWidth = width;
       this.initialHeight = height;
     },
@@ -273,8 +283,13 @@ export default {
     ) {
       const widget = this.$el;
       // Check if transform is valid
-      console.log(transform);
-      if (!transform || !transform.translate || !transform.scale) return;
+      if (
+        !transform ||
+        !transform.translate ||
+        typeof transform.rotate !== 'number' ||
+        typeof transform.scale !== 'number'
+      )
+        return;
 
       const width = this.initialWidth * transform.scale;
       const height = this.initialHeight * transform.scale;
