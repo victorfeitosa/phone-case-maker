@@ -12,35 +12,35 @@ const colorPalette = {
       },
       {
         name: 'lime',
-        value: '#e6dc52'
+        value: '#ece24d'
       },
       {
         name: 'passion',
-        value: '#e7b630'
+        value: '#f0bc2d'
       },
       {
         name: 'strawberry',
-        value: '#e45b79'
+        value: '#ee5576'
       },
       {
         name: 'cherry',
-        value: '#df60ac'
+        value: '#e75baf'
       },
       {
         name: 'avocado',
-        value: '#12d8a3'
+        value: '#0cdda5'
       },
       {
         name: 'acqua',
-        value: '#39c4e7'
+        value: '#31c4e9'
       },
       {
         name: 'blueberry',
-        value: '#72a5e4'
+        value: '#619be2'
       },
       {
         name: 'grape',
-        value: '#8d7fd8'
+        value: '#8576db'
       }
     ]
   },
