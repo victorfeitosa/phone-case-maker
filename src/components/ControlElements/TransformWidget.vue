@@ -1,8 +1,15 @@
 <template>
   <div class="widget" ref="widget" :style="{ display: visible }">
-    <div icon color="red" class="t-btn t-btn--delete" title="Delete">
+    <div
+      icon
+      color="red"
+      class="t-btn t-btn--delete"
+      title="Delete"
+      @click="removeElement"
+    >
       <i class="material-icons">delete</i>
     </div>
+
     <div
       icon
       flat
@@ -98,12 +105,16 @@ export default {
       enterY: 0,
       enterScale: 1.0,
 
-      //Scale control
+      //Rotation control
       angle: 0,
+
+      //Scale control
       scale: 1.0,
       oldScale: 1.0,
       initialWidth: 0,
-      initialHeight: 0
+      initialHeight: 0,
+      initialFontSize: 24,
+      fontSize: 24
     };
   },
   computed: {
@@ -122,7 +133,11 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ deselectCanvasElement: 'control/deselectCanvasElement', updateElement: 'canvas/updateElement' }),
+    ...mapMutations({
+      deselectCanvasElement: 'control/deselectCanvasElement',
+      updateElement: 'canvas/updateElement',
+      deleteElement: 'canvas/deleteElement'
+    }),
     deselect(e) {
       const outsideWidget = e.target.parentElement !== this.$el;
       if (!(this.moving || this.rotating || this.scaling) && outsideWidget) {
@@ -145,6 +160,15 @@ export default {
         child.style.zIndex = Math.min(z + 1, 100);
       }
     },
+    removeElement() {
+      const child = this.childElement;
+      this.removeDialog = false;
+      if (child) {
+        this.deleteElement(this.selectedElementId);
+        this.deselectCanvasElement();
+        child.remove();
+      }
+    },
     // Move methods
     startMove(e) {
       this.moving = true;
@@ -160,7 +184,12 @@ export default {
       if (this.moving && this.visible) {
         this.pX = e.clientX - this.enterX;
         this.pY = e.clientY - this.enterY;
-        const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
+        const transform = {
+          translate: { x: this.pX, y: this.pY },
+          rotate: this.angle,
+          scale: this.scale,
+          fontSize: this.initialFontSize
+        };
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
         return transform;
@@ -183,7 +212,12 @@ export default {
     dragRotate(e) {
       if (this.rotating && this.visible) {
         this.angle = toAngle(Math.atan2(e.clientY - this.enterY, e.clientX - this.enterX));
-        const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
+        const transform = {
+          translate: { x: this.pX, y: this.pY },
+          rotate: this.angle,
+          scale: this.scale,
+          fontSize: this.initialFontSize
+        };
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
         return transform;
@@ -202,6 +236,7 @@ export default {
     endScale(e) {
       this.scaling = false;
       this.oldScale = this.scale;
+      this.initialFontSize = this.fontSize;
       // TODO: update scale of the object in the store
       this.updateElement({
         id: this.selectedElementId,
@@ -213,7 +248,17 @@ export default {
       if (this.scaling && this.visible) {
         const coef = distance(this.enterX, this.enterY, e.clientX, e.clientY) / this.enterScale;
         this.scale = this.oldScale * coef;
-        const transform = { translate: { x: this.pX, y: this.pY }, rotate: this.angle, scale: this.scale };
+
+        const fontCoef = Math.trunc((this.scale - 1) * this.initialFontSize);
+        this.fontSize = this.initialFontSize + fontCoef;
+
+        const transform = {
+          translate: { x: this.pX, y: this.pY },
+          rotate: this.angle,
+          scale: this.scale,
+          fontSize: this.fontSize
+        };
+
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
         return transform;
@@ -230,10 +275,11 @@ export default {
       const left = element.offsetLeft;
       const top = element.offsetTop;
       const transform = element.style.transform;
+      const fontSize = parseInt(element.style.fontSize);
       let angle = 0;
 
-      widget.style.width = `${width}px`;
-      widget.style.height = `${height}px`;
+      widget.style.width = `${width + 2}px`;
+      widget.style.height = `${height + 2}px`;
       widget.style.left = `${left - 1}px`;
       widget.style.top = `${top - 1}px`;
       widget.style.transform = transform;
@@ -260,10 +306,12 @@ export default {
       this.scale = 1.0;
       this.initialWidth = width;
       this.initialHeight = height;
+      this.initialFontSize = fontSize;
+      console.log(this.initialFontSize);
     },
 
     // Apply transformations
-    applyTransformProperties(element, width, height, top, left, angle) {
+    applyTransformProperties(element, width, height, top, left, angle, fontSize) {
       const sinA = Math.sin(toRad(angle));
       const cosA = Math.cos(toRad(angle));
 
@@ -272,13 +320,17 @@ export default {
       element.style.top = `${top}px`;
       element.style.left = `${left}px`;
       element.style.transform = `matrix(${cosA}, ${sinA}, ${-sinA}, ${cosA} , 0, 0)`;
+      if (element.style.fontSize) {
+        element.style.fontSize = `${fontSize}px`;
+      }
     },
     applyTransform(
       element,
       transform = {
         translate: { x: 0, y: 0 },
         rotate: 0,
-        scale: 1
+        scale: 1,
+        fontSize: 24
       }
     ) {
       const widget = this.$el;
@@ -297,9 +349,9 @@ export default {
       const top = transform.translate.y;
       const left = transform.translate.x;
 
-      this.applyTransformProperties(widget, width, height, top, left, transform.rotate);
+      this.applyTransformProperties(widget, width, height, top, left, transform.rotate, 0);
       if (element) {
-        this.applyTransformProperties(element, width, height, top, left, transform.rotate);
+        this.applyTransformProperties(element, width, height, top, left, transform.rotate, transform.fontSize);
       }
     }
   }

@@ -52,12 +52,13 @@ export default {
 <style lang="scss" scoped>
 .canvas-text {
   cursor: pointer;
-  height: auto;
-  max-height: 100%;
-  max-width: 100%;
+  height: auto !important;
+  // max-height: 100%;
+  // max-width: 100%;
   // padding: 0.5rem;
   position: absolute;
-  width: auto;
+  width: auto !important;
+  white-space: nowrap;
 
   &::after {
     background-color: rgba(#00bcd4, 0.3);
