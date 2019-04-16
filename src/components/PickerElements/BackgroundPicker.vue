@@ -22,7 +22,7 @@
           <BackgroundItem src="/images/backgrounds/stripes.jpg" />
         </v-flex>
         <v-flex xs12 md4 pa-0>
-          <v-btn small dark color="cyan">Upload Image</v-btn>
+          <UploadButton />
         </v-flex>
       </v-layout>
 
@@ -40,11 +40,13 @@
 <script>
 import BackgroundItem from '../OptionElements/BackgroundItem';
 import BackgroundAlignmentOptions from '../OptionElements/BackgroundAlignmentOptions';
+import UploadButton from '../ControlElements/UploadButton';
 
 export default {
   components: {
     BackgroundItem,
-    BackgroundAlignmentOptions
+    BackgroundAlignmentOptions,
+    UploadButton
   }
 };
 </script>
