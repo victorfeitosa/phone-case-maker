@@ -4125,6 +4125,11 @@ html-tags@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-2.0.0.tgz#10b30a386085f43cede353cc8fa7cb0deeea668b"
   integrity sha1-ELMKOGCF9Dzt41PMj6fLDe7qZos=
 
+html-to-image@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/html-to-image/-/html-to-image-0.1.0.tgz#09261dd2831baa5f2f360f9d26625ca24f55c669"
+  integrity sha512-/VLH+jjGQgLDs+BlVDVAzI1rdghYfFWFcPmFHChiD3UHMmckyDuvJpH3N3lli0elJkWfyv/EKrWNXTxm3mg4oQ==
+
 html-webpack-plugin@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-3.2.0.tgz#b01abbd723acaaa7b37b6af4492ebda03d9dd37b"

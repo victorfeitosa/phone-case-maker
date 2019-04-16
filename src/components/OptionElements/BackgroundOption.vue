@@ -1,7 +1,7 @@
 <template>
   <v-tooltip bottom>
     <template v-slot:activator="{ on }">
-      <v-btn icon flat color="cyan" v-on="on" @click="click">
+      <v-btn icon :flat="!selected" dark color="cyan" v-on="on" @click="click">
         <v-icon>{{ icon }}</v-icon>
       </v-btn>
     </template>
@@ -19,6 +19,10 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    selected: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

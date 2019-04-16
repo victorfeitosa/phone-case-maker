@@ -16,6 +16,7 @@
     "es6-promise": "^4.2.6",
     "express": "^4.16.4",
     "formidable": "^1.2.1",
+    "html-to-image": "^0.1.0",
     "uuid": "^3.3.2",
     "vue": "^2.6.6",
     "vuetify": "^1.5.9",

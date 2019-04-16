@@ -4,49 +4,58 @@
       <BackgroundOption
         label="Align to top"
         icon="border_top"
-        @click="doSomething"
+        :selected="alignTop"
+        @click="setAlignTop"
       />
       <BackgroundOption
         label="Align to vertical center"
         icon="border_horizontal"
-        @click="doSomething"
+        :selected="alignMiddle"
+        @click="setAlignMiddle"
       />
       <BackgroundOption
         label="Align to bottom"
         icon="border_bottom"
-        @click="doSomething"
+        :selected="alignBottom"
+        @click="setAlignBottom"
       />
       <BackgroundOption
         label="Align to left"
         icon="border_left"
-        @click="doSomething"
+        :selected="alignLeft"
+        @click="setAlignLeft"
       />
       <BackgroundOption
         label="Align to horizontal center"
         icon="border_vertical"
-        @click="doSomething"
+        :selected="alignCenter"
+        @click="setAlignCenter"
       />
       <BackgroundOption
         label="Align to right"
         icon="border_right"
-        @click="doSomething"
+        :selected="alignRight"
+        @click="setAlignRight"
       />
     </v-flex>
     <v-flex xs12 text-xs-left py-0>
       <BackgroundOption
         label="Background fit"
         icon="crop_portrait"
-        @click="doSomething"
+        :selected="contain"
+        @click="setContain"
       />
       <BackgroundOption
         label="Background cover"
         icon="crop_landscape"
-        @click="doSomething"
+        :selected="cover"
+        @click="setCover"
       />
       <BackgroundOption
         label="Background stretch"
         icon="crop_din"
-        @click="doSomething"
+        :selected="stretch"
+        @click="setStretch"
       />
     </v-flex>
   </v-layout>
@@ -54,12 +63,41 @@
 
 <script>
 import BackgroundOption from './BackgroundOption';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   components: {
     BackgroundOption
   },
+  computed: {
+    ...mapGetters({
+      alignTop: 'background/isAlignedYTop',
+      alignMiddle: 'background/isAlignedYCenter',
+      alignBottom: 'background/isAlignedYBottom',
+
+      alignLeft: 'background/isAlignedXLeft',
+      alignCenter: 'background/isAlignedXCenter',
+      alignRight: 'background/isAlignedXRight',
+
+      stretch: 'background/isStretched',
+      cover: 'background/isCover',
+      contain: 'background/isContain'
+    })
+  },
   methods: {
+    ...mapMutations({
+      setAlignTop: 'background/setAlignYTop',
+      setAlignMiddle: 'background/setAlignYCenter',
+      setAlignBottom: 'background/setAlignYBottom',
+
+      setAlignLeft: 'background/setAlignXLeft',
+      setAlignCenter: 'background/setAlignXCenter',
+      setAlignRight: 'background/setAlignXRight',
+
+      setStretch: 'background/setSizeStretch',
+      setCover: 'background/setSizeCover',
+      setContain: 'background/setSizeContain'
+    }),
     doSomething() {
       console.log('DOES SOMETHING');
     }

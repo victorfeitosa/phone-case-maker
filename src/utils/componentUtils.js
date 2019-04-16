@@ -35,11 +35,12 @@ export function uploadbackgroundImage(fileInputHandle) {
 
     return axios({
       method: 'POST',
-      headers: { 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': 'multipart/form-data' },
       url: '/upload-background',
       data: formData
     })
       .then(response => {
+        console.log('Response thing', response);
         return new Promise((resolve) => {
           resolve({ fileName: response.data.file });
         });

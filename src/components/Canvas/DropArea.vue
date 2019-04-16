@@ -2,7 +2,11 @@
   <div ref="canvas" class="drop-area" @dragover="dragOver" @drop="drop">
     <div
       class="drop-area__background"
-      :style="{ backgroundImage: backgroundUrl }"
+      :style="{
+        backgroundImage: backgroundUrl,
+        backgroundPosition: backgroundPosition,
+        backgroundSize: backgroundSize
+      }"
     ></div>
   </div>
 </template>
@@ -15,6 +19,14 @@ import CanvasText from '../DropElements/CanvasText';
 
 export default {
   computed: {
+    ...mapGetters({
+      backgroundSize: 'background/backgroundSize',
+      backgroundAlignX: 'background/alignmentX',
+      backgroundAlignY: 'background/alignmentY'
+    }),
+    backgroundPosition() {
+      return `${this.backgroundAlignY} ${this.backgroundAlignX}`;
+    },
     backgroundUrl() {
       return `url("${this.backgroundImage()}")`;
     }

@@ -16,7 +16,7 @@ app.post('/upload-background', (req, res) => {
       var fileExt = path.extname(file.name);
 
       file.name = 'uploaded' + fileExt;
-      file.path = path.join(__dirname, 'uploads', file.name);
+      file.path = path.join(__dirname, '..', 'public', 'images', 'uploaded', file.name);
     })
     .on('file', (name, file) => {
       res.write(JSON.stringify({ file: file.name }));
