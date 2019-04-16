@@ -5,13 +5,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "node-server": "yarn build && node ./server/server.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.3",
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.6",
+    "express": "^4.16.4",
+    "formidable": "^1.2.1",
     "uuid": "^3.3.2",
     "vue": "^2.6.6",
     "vuetify": "^1.5.9",
