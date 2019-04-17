@@ -10,9 +10,9 @@
         </v-layout>
         <v-layout row justify-center text-xs-center>
           <v-flex xs12>
-            <v-btn dark color="cyan">
+            <v-btn dark color="cyan" @click="getCase">
               <v-icon left dark>cloud_download</v-icon>
-              Print
+              Get Case
             </v-btn>
           </v-flex>
         </v-layout>
@@ -38,6 +38,7 @@
 
 
 <script>
+import { toPng } from 'html-to-image';
 import BackgroundPicker from '../PickerElements/BackgroundPicker';
 import Canvas from '../Canvas/Canvas';
 import ElementPicker from '../PickerElements/ElementPicker';
@@ -47,6 +48,24 @@ export default {
     BackgroundPicker,
     Canvas,
     ElementPicker
+  },
+  methods: {
+    getCase() {
+      const element = document.getElementById('canvas');
+      console.log(element);
+
+      // const printArea = document.getElementById('print-canvas');
+      // printArea.innerHTML = element;
+      // printArea.style.width = `${element.offsetWidth}px`;
+      // printArea.style.height = `${element.offsetHeight}px`;
+
+      toPng(element, { quality: 1 }).then(function(dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'my-image-name.png';
+        link.href = dataUrl;
+        link.click();
+      });
+    }
   }
 };
 </script>

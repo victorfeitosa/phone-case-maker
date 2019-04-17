@@ -1,5 +1,11 @@
 <template>
-  <div ref="canvas" class="drop-area" @dragover="dragOver" @drop="drop">
+  <div
+    ref="canvas"
+    id="canvas"
+    class="drop-area"
+    @dragover="dragOver"
+    @drop="drop"
+  >
     <div
       class="drop-area__background"
       :style="{
@@ -102,8 +108,9 @@ export default {
   width: 100%;
 
   &__background {
+    background-color: transparent;
     background-size: 100% 100%;
-    border-radius: 32px;
+    // border-radius: 32px;
     pointer-events: none;
     position: absolute;
     top: 0;

@@ -1,5 +1,5 @@
 <template>
-  <div class="print-canvas"></div>
+  <div id="print-canvas" class="print-canvas"></div>
 </template>
 
 <style lang="scss" scoped>

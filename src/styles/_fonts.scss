@@ -1,4 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes|League+Script|Cabin+Sketch|Sacramento|Sue+Ellen+Francisco|Montserrat');
+// @import url('https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes|League+Script|Cabin+Sketch|Sacramento|Sue+Ellen+Francisco|Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+@font-face {
+  font-family: 'League Script';
+  src: url('/fonts/League_Script/LeagueScript.ttf');
+}
+@font-face {
+  font-family: 'Dancing Script';
+  src: url('/fonts/Dancing_Script/DancingScript-Regular.ttf');
+}
+@font-face {
+  font-family: 'Great Vibes';
+  src: url('/fonts/Great_Vibes/GreatVibes-Regular.ttf');
+}
+@font-face {
+  font-family: 'Sacramento';
+  src: url('/fonts/Sacramento/Sacramento-Regular.ttf');
+}
+@font-face {
+  font-family: 'Sue Ellen Francisco';
+  src: url('/fonts/Sue_Ellen_Francisco/SueEllenFrancisco.ttf');
+}
+@font-face {
+  font-family: 'Cabin Sketch';
+  src: url('/fonts/Cabin_Sketch/CabinSketch-Regular.ttf');
+}
 
 // Font families
 $montserrat: 'Montserrat', Helvetica, Arial, sans-serif;
@@ -6,8 +32,8 @@ $league-script: 'League Script', cursive;
 $dancing-script: 'Dancing Script', cursive;
 $great-vibes: 'Great Vibes', cursive;
 $sacramento: 'Sacramento', cursive;
-$sue-ellen: 'Sue Ellen Francisco', sans-serif;
-$cabin-sketch: 'Cabin Sketch', serif;
+$sue-ellen: 'Sue Ellen Francisco', cursive;
+$cabin-sketch: 'Cabin Sketch', cursive;
 
 // Font weights
 $weight-bolder: 800;
