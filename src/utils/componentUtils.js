@@ -15,6 +15,24 @@ export function mountComponentToParent(vueComponentToMount, parentEl, props) {
   return instance;
 }
 
+export function getElementCanvasData(elementId, elementType, elementProps, otherData) {
+  const element = document.getElementById(elementId);
+  let canvasData = null;
+  if (element) {
+    canvasData = {
+      left: element.offsetLeft,
+      top: element.offsetTop,
+      height: element.offsetTop,
+      width: element.offsetWidth,
+      transform: element.style.transform,
+      type: elementType,
+      ...elementProps,
+      ...otherData
+    };
+  }
+  return canvasData;
+}
+
 export function debounce(func, delay) {
   var timeout;
   return function () {
@@ -40,7 +58,6 @@ export function uploadbackgroundImage(fileInputHandle) {
       data: formData
     })
       .then(response => {
-        console.log('Response thing', response);
         return new Promise((resolve) => {
           resolve({ fileName: response.data.file });
         });
