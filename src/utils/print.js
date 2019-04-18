@@ -29,6 +29,7 @@ function createPrintSticker(element) {
     }
   });
   printSticker.$mount();
+
   return printSticker.$el;
 }
 
@@ -42,11 +43,13 @@ function createPrintText(element) {
     }
   });
   printText.$mount();
+
   return printText.$el;
 }
 
 function createPrintElement(element) {
   const printElement = element.type === 'sticker' ? createPrintSticker(element) : createPrintText(element);
+  printElement.style.position = 'absolute';
   printElement.style.left = `${element.left}px`;
   printElement.style.top = `${element.top}px`;
   printElement.style.height = `${element.height}px`;
@@ -91,10 +94,20 @@ export function printCanvasImage(imageName = 'phone-case') {
   const upscaledElements = buildUpscaledElementsFromStoreElements();
   const printCanvas = buildPrintCanvas(upscaledElements);
 
-  toPng(printCanvas, { quality: 1 }).then(function (dataUrl) {
+  console.log(printCanvas);
+  document.getElementById('print-canvas').append(printCanvas);
+
+  toPng(printCanvas, { quality: 0.98, width: 875, height: 1840 }).then(function (dataUrl) {
     let link = document.createElement('a');
     link.download = `${imageName}.png`;
     link.href = dataUrl;
     link.click();
   });
+  // toJpeg(printCanvas, )
+  //   .then(function (dataUrl) {
+  //     var link = document.createElement('a');
+  //     link.download = 'my-image-name.jpeg';
+  //     link.href = dataUrl;
+  //     link.click();
+  //   });
 }
