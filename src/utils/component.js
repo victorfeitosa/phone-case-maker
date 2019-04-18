@@ -15,7 +15,7 @@ export function mountComponentToParent(vueComponentToMount, parentEl, props) {
   return instance;
 }
 
-export function getElementCanvasData(elementId, elementType, elementProps, otherData) {
+export function getElementCanvasData(elementId) {
   const element = document.querySelector(`[data-uid="${elementId}"]`);
   let canvasData = null;
   if (element) {
@@ -26,9 +26,7 @@ export function getElementCanvasData(elementId, elementType, elementProps, other
       width: element.offsetWidth,
       transform: element.style.transform,
       zIndex: element.style.zIndex,
-      type: elementType,
-      ...elementProps,
-      ...otherData
+      ...element._props
     };
   }
   return canvasData;

@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { getElementCanvasData } from '../../utils/component.js';
 import { toAngle, toRad, angleFromTransform, distance } from '../../utils/math.js';
 import { mapGetters, mapMutations } from 'vuex';
 
@@ -177,7 +178,12 @@ export default {
     // on document
     endMove(e) {
       this.moving = false;
-      // TODO: Update element data at the store
+
+      const elData = getElementCanvasData(this.selectedElementId);
+      this.updateElement({
+        id: this.selectedElementId,
+        ...elData
+      });
       e.stopPropagation();
     },
     dragMove(e) {
@@ -186,7 +192,7 @@ export default {
         this.pY = e.clientY - this.enterY;
         const transform = {
           translate: { x: this.pX, y: this.pY },
-          rotate: this.angle,
+          rotate: this.angle || 0,
           scale: this.scale,
           fontSize: this.initialFontSize
         };
@@ -207,7 +213,13 @@ export default {
     endRotate(e) {
       this.rotating = false;
       this.oldAngle = this.angle;
-      // TODO: Update element data at the store
+
+      const elData = getElementCanvasData(this.selectedElementId);
+      this.updateElement({
+        id: this.selectedElementId,
+        rotate: this.angle,
+        ...elData
+      });
       e.stopPropagation();
     },
     dragRotate(e) {
@@ -239,10 +251,11 @@ export default {
       this.oldScale = this.scale;
       this.initialFontSize = this.fontSize;
 
-      // TODO: Update element data at the store
+      const elData = getElementCanvasData(this.selectedElementId);
       this.updateElement({
         id: this.selectedElementId,
-        scale: 1.0
+        scale: this.scale,
+        ...elData
       });
       e.stopPropagation();
     },
@@ -288,6 +301,7 @@ export default {
 
       if (transform) {
         angle = angleFromTransform(transform);
+        console.log('Angle from transform', angle);
       }
 
       // Reset control variables

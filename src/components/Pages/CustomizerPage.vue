@@ -50,13 +50,11 @@ export default {
   },
   methods: {
     getCase() {
-      const element = document.getElementById('canvas');
-
+      // const element = document.getElementById('canvas');
       // const printArea = document.getElementById('print-canvas');
       // printArea.innerHTML = element;
       // printArea.style.width = `${element.offsetWidth}px`;
       // printArea.style.height = `${element.offsetHeight}px`;
-
       // toPng(element, { quality: 1 }).then(function(dataUrl) {
       //   var link = document.createElement('a');
       //   link.download = 'my-image-name.png';

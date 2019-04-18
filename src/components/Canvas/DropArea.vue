@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import { mountComponentToParent } from '../../utils/componentUtils.js';
+import { mountComponentToParent, getElementCanvasData } from '../../utils/component.js';
 import CanvasSticker from '../DropElements/CanvasSticker';
 import CanvasText from '../DropElements/CanvasText';
 
@@ -84,14 +84,14 @@ export default {
       }
 
       this.$nextTick(() => {
-        // TODO: fix this to get all the element data
         const elementData = {
-          ...elementInstance._data,
-          ...elementInstance._props,
+          type: dropData.type,
+          rotate: 0,
           scale: 1,
-          rotate: 0
+          ...elementInstance._data, // includes uid and text if it's a text element
+          ...elementInstance._props, // includes src if it's a sticker element
+          ...getElementCanvasData(uid) // includes all the positioning, size and transform props
         };
-        console.log('Adding canvas element', elementData);
         this.addCanvasElement(elementData);
         this.setSelectedCanvasElement(uid);
       });

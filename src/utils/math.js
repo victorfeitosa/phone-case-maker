@@ -10,7 +10,7 @@ export function angleFromTransform(transform) {
   let splits = transform.split('(');
   splits = splits[0].split(',');
 
-  return toAngle(Math.atan2(splits[0]));
+  return toAngle(Math.atan2(splits[0])) || 0; // if NaN returns 0
 }
 
 export function radFromTransform(transform) {

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { uploadbackgroundImage } from '../../utils/componentUtils.js';
+import { uploadbackgroundImage } from '../../utils/component.js';
 import { mapMutations } from 'vuex';
 
 export default {
