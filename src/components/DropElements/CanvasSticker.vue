@@ -1,5 +1,5 @@
 <template>
-  <v-img class="canvas-sticker" :src="src" @click="select"></v-img>
+  <v-img contain class="canvas-sticker" :src="src" @click="select"></v-img>
 </template>
 
 <script>

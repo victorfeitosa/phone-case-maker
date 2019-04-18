@@ -6,8 +6,6 @@
       <TextPicker v-else />
     </v-flex>
   </v-layout>
-  <!-- <v-card class="scroll-y">
-  </v-card> -->
 </template>
 
 <script>

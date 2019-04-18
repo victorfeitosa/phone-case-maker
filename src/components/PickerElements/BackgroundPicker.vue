@@ -51,9 +51,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.head-text {
-  display: inline-block;
-}
-</style>
-

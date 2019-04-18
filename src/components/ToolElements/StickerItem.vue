@@ -2,6 +2,7 @@
   <v-flex xs3 lg2 mx-3 class="sticker-item">
     <v-img
       draggable
+      contain
       @dragstart="dragStart"
       :src="src"
       :alt="alt"
@@ -38,11 +39,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$min-size: 8rem;
+
 .sticker-item {
   &__image {
     border: 2px dashed transparent;
     border-radius: 8px;
     cursor: grab;
+    min-height: $min-size;
+    min-width: $min-size;
     transform-origin: 50% 50%;
     transition: border 0.15s ease-in-out;
 

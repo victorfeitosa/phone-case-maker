@@ -153,7 +153,6 @@ export default {
       }
     },
     brignForward() {
-      // TODO: count max number of objects to get limit to zIndex
       const child = this.childElement;
       if (child) {
         const z = parseInt(child.style.zIndex);
@@ -178,6 +177,7 @@ export default {
     // on document
     endMove(e) {
       this.moving = false;
+      // TODO: Update element data at the store
       e.stopPropagation();
     },
     dragMove(e) {
@@ -207,6 +207,7 @@ export default {
     endRotate(e) {
       this.rotating = false;
       this.oldAngle = this.angle;
+      // TODO: Update element data at the store
       e.stopPropagation();
     },
     dragRotate(e) {
@@ -237,7 +238,8 @@ export default {
       this.scaling = false;
       this.oldScale = this.scale;
       this.initialFontSize = this.fontSize;
-      // TODO: update scale of the object in the store
+
+      // TODO: Update element data at the store
       this.updateElement({
         id: this.selectedElementId,
         scale: 1.0
@@ -307,10 +309,9 @@ export default {
       this.initialWidth = width;
       this.initialHeight = height;
       this.initialFontSize = fontSize;
-      console.log(this.initialFontSize);
     },
 
-    // Apply transformations
+    // Apply transformations to an element
     applyTransformProperties(element, width, height, top, left, angle, fontSize) {
       const sinA = Math.sin(toRad(angle));
       const cosA = Math.cos(toRad(angle));
@@ -437,6 +438,7 @@ $btn-size: 1.75rem;
   i {
     font-size: 18px;
     pointer-events: none;
+    user-select: none;
   }
 }
 </style>

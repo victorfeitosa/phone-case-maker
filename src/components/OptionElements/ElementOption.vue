@@ -2,7 +2,6 @@
   <v-tooltip bottom>
     <template v-slot:activator="{ on }">
       <v-btn square dark flat color="blue" v-on="on" @click="click">
-        <!-- <i :class="`option-icon option-icon--${icon}`"></i> -->
         <v-icon>{{ icon }}</v-icon>
       </v-btn>
     </template>
@@ -36,12 +35,5 @@ export default {
   background-size: contain;
   height: 100%;
   width: 100%;
-
-  &--sticker {
-    background-image: "assets/icons/align-top.png";
-  }
-  &--text {
-    background-image: "assets/icons/align-v-center.png";
-  }
 }
 </style>

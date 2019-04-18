@@ -84,12 +84,14 @@ export default {
       }
 
       this.$nextTick(() => {
+        // TODO: fix this to get all the element data
         const elementData = {
           ...elementInstance._data,
           ...elementInstance._props,
           scale: 1,
           rotate: 0
         };
+        console.log('Adding canvas element', elementData);
         this.addCanvasElement(elementData);
         this.setSelectedCanvasElement(uid);
       });

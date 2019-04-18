@@ -38,7 +38,6 @@
 
 
 <script>
-import { toPng } from 'html-to-image';
 import BackgroundPicker from '../PickerElements/BackgroundPicker';
 import Canvas from '../Canvas/Canvas';
 import ElementPicker from '../PickerElements/ElementPicker';
@@ -52,19 +51,18 @@ export default {
   methods: {
     getCase() {
       const element = document.getElementById('canvas');
-      console.log(element);
 
       // const printArea = document.getElementById('print-canvas');
       // printArea.innerHTML = element;
       // printArea.style.width = `${element.offsetWidth}px`;
       // printArea.style.height = `${element.offsetHeight}px`;
 
-      toPng(element, { quality: 1 }).then(function(dataUrl) {
-        var link = document.createElement('a');
-        link.download = 'my-image-name.png';
-        link.href = dataUrl;
-        link.click();
-      });
+      // toPng(element, { quality: 1 }).then(function(dataUrl) {
+      //   var link = document.createElement('a');
+      //   link.download = 'my-image-name.png';
+      //   link.href = dataUrl;
+      //   link.click();
+      // });
     }
   }
 };
@@ -74,7 +72,6 @@ export default {
 .page {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
-  // max-height: 80vh;
 }
 </style>
 

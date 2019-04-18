@@ -97,10 +97,7 @@ export default {
       setStretch: 'background/setSizeStretch',
       setCover: 'background/setSizeCover',
       setContain: 'background/setSizeContain'
-    }),
-    doSomething() {
-      console.log('DOES SOMETHING');
-    }
+    })
   }
 };
 </script>

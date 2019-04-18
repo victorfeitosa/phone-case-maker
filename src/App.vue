@@ -22,7 +22,6 @@ export default {
 @import "./styles/fonts";
 
 #app {
-  font-family: $montserrat;
   font-size: 32px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
