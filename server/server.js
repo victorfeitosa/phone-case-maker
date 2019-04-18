@@ -1,12 +1,13 @@
-const express = require('express');
-const formidable = require('formidable');
+var express = require('express');
+var fs = require('fs');
+var formidable = require('formidable');
 
-const path = require('path');
-const hostname = process.env.HOST_NAME || 'localhost';
-const port = process.env.PORT || 8000;
+var path = require('path');
+var hostname = process.env.HOST_NAME || 'localhost';
+var port = process.env.PORT || 8000;
 
-const app = express();
-const publicPath = path.join(__dirname, '..', 'dist');
+var app = express();
+var publicPath = path.join(__dirname, '..', 'dist');
 
 app.use(express.static(publicPath));
 
@@ -14,9 +15,12 @@ app.post('/upload-background', (req, res) => {
   new formidable.IncomingForm().parse(req)
     .on('fileBegin', (name, file) => {
       var fileExt = path.extname(file.name);
-
+      var dir = path.join(__dirname, '..', 'dist', 'images', 'uploaded');
+      if(!fs.existsSync(dir)) {
+        fs.mkdirSysnc(dir);
+      }
       file.name = 'uploaded' + fileExt;
-      file.path = path.join(__dirname, '..', 'public', 'images', 'uploaded', file.name);
+      file.path = path.join(dir, file.name);
     })
     .on('file', (name, file) => {
       res.write(JSON.stringify({ file: file.name }));
