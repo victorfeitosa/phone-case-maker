@@ -22,7 +22,7 @@ export function getElementCanvasData(elementId) {
     canvasData = {
       left: element.offsetLeft,
       top: element.offsetTop,
-      height: element.offsetTop,
+      height: element.offsetHeight,
       width: element.offsetWidth,
       transform: element.style.transform,
       zIndex: element.style.zIndex,

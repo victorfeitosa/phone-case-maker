@@ -41,6 +41,7 @@
 import BackgroundPicker from '../PickerElements/BackgroundPicker';
 import Canvas from '../Canvas/Canvas';
 import ElementPicker from '../PickerElements/ElementPicker';
+import { printCanvasImage } from '../../utils/print.js';
 
 export default {
   components: {
@@ -50,17 +51,7 @@ export default {
   },
   methods: {
     getCase() {
-      // const element = document.getElementById('canvas');
-      // const printArea = document.getElementById('print-canvas');
-      // printArea.innerHTML = element;
-      // printArea.style.width = `${element.offsetWidth}px`;
-      // printArea.style.height = `${element.offsetHeight}px`;
-      // toPng(element, { quality: 1 }).then(function(dataUrl) {
-      //   var link = document.createElement('a');
-      //   link.download = 'my-image-name.png';
-      //   link.href = dataUrl;
-      //   link.click();
-      // });
+      printCanvasImage();
     }
   }
 };
