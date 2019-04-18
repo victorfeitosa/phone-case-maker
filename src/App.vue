@@ -1,6 +1,9 @@
 <template>
   <v-app id="app">
-    <v-toolbar app dark></v-toolbar>
+    <v-toolbar app dark>
+        <v-toolbar-title class="toolbar__title">Case Customizer - Coding challenge</v-toolbar-title>
+        <v-spacer />
+    </v-toolbar>
     <v-content>
       <CustomizerPage />
     </v-content>
@@ -28,5 +31,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.toolbar__title {
+  font-family: $dancing-script;
+  font-size: 24px;
 }
 </style>

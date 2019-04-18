@@ -2,7 +2,7 @@
   <v-container grid-list-md>
     <v-layout row wrap align-baseline>
       <!-- Text Input -->
-      <v-flex md12 lg6>
+      <v-flex lg12 xl6>
         <v-text-field
           label="Text"
           @input="setText"
@@ -11,7 +11,7 @@
       </v-flex>
       <v-spacer />
       <!-- Color Picker -->
-      <v-flex md12 lg5 mr-1>
+      <v-flex lg12 xl5 mr-1>
         <ColorPicker />
       </v-flex>
     </v-layout>
