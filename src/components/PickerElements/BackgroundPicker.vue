@@ -29,7 +29,7 @@
       <!-- Alignment Options -->
       <v-layout>
         <v-flex xs12>
-          <h3 class="subheading text-xs-left">Size & Alignment</h3>
+          <h3 class="subheading text-xs-left">Alignment & Size</h3>
           <BackgroundAlignmentOptions />
         </v-flex>
       </v-layout>

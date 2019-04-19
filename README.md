@@ -71,7 +71,8 @@ Text colour palettes were thought out to be bright and cheerful. Fonts were base
 5. Getting rid of Vuetify, sometimes it can be a verbose pain. Also, Vuetify gets in the way of supporting browsers such as IE11.
 6. Decouple everything I could. Sometimes the short deadline makes us do some coupling so we can to gain some results faster.
 7. Make 'send backward' and 'bring-forward' work relatively with other elements in canvas, so the element would be ordered based on the other components depth and not in a "increase/decrease depth regardless of the others" fashion.
-8. Better planning and organization overall.
+8. Definitely remove hacks to circunvent how vuetify work with v-img and the dom-to-image package's quirks
+9. Better planning and organization overall.
 
 ## Final notes 🧹
 This was a great exercise. DOM handling and logc were a bit rusty before this, but coding the transform widget was great to get some of the logic and ideas of my game making days back. Despite some things being rushed and some things being done over someone else's code I have confidence that I could eliminate most of these dependencies if I have enough time. Also polishing handling the rough edges are also neededin some parts of the code and architecture.

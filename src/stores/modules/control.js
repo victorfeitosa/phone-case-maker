@@ -8,6 +8,8 @@ const control = {
 
     selectedFont: null,
     selectedFontColor: 'default',
+
+    openPrintDialog: false
   },
   getters: {
     getElementType(state) {
@@ -25,6 +27,9 @@ const control = {
     getSelectedFontColor(state) {
       return state.selectedFontColor;
     },
+    openPrintDialog(state) {
+      return state.openPrintDialog;
+    }
   },
   mutations: {
     setElementType(state, elementType) {
@@ -44,6 +49,12 @@ const control = {
     },
     setSelectedFontColor(state, colorName) {
       state.selectedFontColor = colorName;
+    },
+    setPrintDialogOpen(state) {
+      state.openPrintDialog = true;
+    },
+    setPrintDialogClose(state) {
+      state.openPrintDialog = false;
     },
   },
   actions: {}

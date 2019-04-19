@@ -21,12 +21,16 @@ export default {
     color: {
       type: String,
       required: true
+    },
+    text: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
-      id: uuid(),
-      text: ''
+      id: uuid()
+      // text: ''
     };
   },
   computed: {
@@ -44,7 +48,7 @@ export default {
     }
   },
   created() {
-    this.text = this.getText;
+    this.text = this.text || this.getText;
   }
 };
 </script>
@@ -53,9 +57,6 @@ export default {
 .canvas-text {
   cursor: pointer;
   height: auto !important;
-  // max-height: 100%;
-  // max-width: 100%;
-  // padding: 0.5rem;
   position: absolute;
   width: auto !important;
   white-space: nowrap;

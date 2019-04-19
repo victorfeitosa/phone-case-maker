@@ -181,8 +181,8 @@ export default {
 
       const elData = getElementCanvasData(this.selectedElementId);
       this.updateElement({
-        id: this.selectedElementId,
-        ...elData
+        ...elData,
+        id: this.selectedElementId
       });
       e.stopPropagation();
     },
@@ -216,9 +216,9 @@ export default {
 
       const elData = getElementCanvasData(this.selectedElementId);
       this.updateElement({
+        ...elData,
         id: this.selectedElementId,
-        rotate: this.angle,
-        ...elData
+        rotate: this.angle
       });
       e.stopPropagation();
     },
@@ -253,9 +253,10 @@ export default {
 
       const elData = getElementCanvasData(this.selectedElementId);
       this.updateElement({
+        ...elData,
         id: this.selectedElementId,
         scale: this.scale,
-        ...elData
+        fontSize: this.fontSize
       });
       e.stopPropagation();
     },
@@ -301,7 +302,6 @@ export default {
 
       if (transform) {
         angle = angleFromTransform(transform);
-        console.log('Angle from transform', angle);
       }
 
       // Reset control variables

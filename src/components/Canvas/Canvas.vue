@@ -4,9 +4,9 @@
       <PhoneFrame />
       <DropArea />
       <PhoneForeground />
-      <PrintCanvas />
       <TransformWidget />
     </div>
+    <PrintCanvas />
   </div>
 </template>
 

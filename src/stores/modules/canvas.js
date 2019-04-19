@@ -30,7 +30,6 @@ const canvasElements = {
     },
     deleteElement(state, id) {
       state.elements = state.elements.filter(e => e.id !== id);
-      console.log(state.elements);
     },
   }
 };
