@@ -1,7 +1,7 @@
 Case Customizer - Gocase Front End test
 ===
 
-## The project 🖇
+## The project 🧙
 This project is a front end coding test for Gocase. It consists of a phone case customizer interface where a user can select a background for the case, 
 add/remove images (stickers) and text, pick fonts, colours and styles and download an image to print a user-customized phone case.
 * Started on 06/04/2019
@@ -16,10 +16,10 @@ add/remove images (stickers) and text, pick fonts, colours and styles and downlo
 * Free SVG stickers
 * Lots of coffee
 
-## Images Attribution
+## Images Attribution 📷️
 * SVG Stickers - Summer set (<a href="http://www.freepik.com">Designed by rawpixel.com / Freepik</a>)
 * SVG Stickers - Cute set (<a href="http://www.freepik.com">Designed by Freepik</a>)
-* Backgorund Image Options - *No references were found, please inform if you own these images*
+* Backgorund Image Options - *No references were found, please inform if you own any of these images*
 
 ### Dependencies 🌋
 * Vue and all of its stack (VueX, Babel, Babel Polyfill, ES6 utils)
@@ -67,7 +67,7 @@ Vuex was used for all the interchangeable data throughout the App. Also, some ut
 Text colour palettes were thought out to be bright and cheerful. Fonts were based on "notebook" and "planner" products.
 
 
-## What I'd do differently 🔮
+## What I'd do differently 🔮💣️
 1. I believe the first thing that comes to mind is to build the canvas and the renderer differently. The canvas looks good as is, but if there was a renderer done from scratch using HTML5 Canvas, maybe the canvas drop area could be a scaled-down version of the print canvas, rendering directly content into pixels. This would make the rendering more straight forward without the need of a data upscaling step between the drop area and the actual rendering, and also avoiding small inconsistencies of position and size between the small drop area canvas and the large print area result.
 2. Implementing my own renderer using HTML5 Canvas as discussed above. Since there is no use of complex DOM properties such as box-shadow and filters in the app, the canvas renderer would be fairly simple to do. It would consist of a background rendering step, a render loop for SVG images and a render loop for text elements. It would also support text stroke options and post-processing. But the deadline requires taking some shortcuts.
 3. Having more options for case bases (for different phone models), and pulling stickers and fonts from elsewhere (google fonts and other sources).
@@ -78,7 +78,7 @@ Text colour palettes were thought out to be bright and cheerful. Fonts were base
 8. Definitely remove hacks to circunvent how vuetify work with v-img and the dom-to-image package's quirks
 9. Better planning and organization overall.
 
-## Final notes 🧹
+## Final notes 📔
 This was a great exercise. DOM handling and logc were a bit rusty before this, but coding the transform widget was great to get some of the logic and ideas of my game making days back. Despite some things being rushed and some things being done over someone else's code I have confidence that I could eliminate most of these dependencies if I have enough time. Also polishing handling the rough edges are also neededin some parts of the code and architecture.
 
 Despite all that it was a great challenge to get the blood flowing again!
