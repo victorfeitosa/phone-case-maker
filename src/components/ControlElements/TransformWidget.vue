@@ -1,5 +1,6 @@
 <template>
   <div class="widget" ref="widget" :style="{ display: visible }">
+    <div class="origin" :style="{ left: enterX, top: enterY }"></div>
     <div
       icon
       color="red"
@@ -117,6 +118,10 @@ export default {
       initialHeight: 0,
       initialFontSize: 24,
       fontSize: 24,
+
+      // origin debugging
+      originX: 0,
+      originY: 0,
     };
   },
   computed: {
@@ -205,11 +210,11 @@ export default {
     },
 
     // Rotate methods
-    startRotate() {
+    startRotate(e) {
       const widget = this.$el;
       this.rotating = true;
-      this.enterX = this.pX + widget.offsetWidth / 2;
-      this.enterY = this.pY + widget.offsetHeight / 2;
+      this.enterX = e.clientX - Math.cos(this.angle) * (widget.offsetWidth / 2);
+      this.enterY = e.clientY + Math.sin(this.angle) * (widget.offsetHeight / 2);
     },
     // on document
     endRotate(e) {
@@ -380,6 +385,13 @@ export default {
 
 <style lang="scss" scoped>
 $btn-size: 1.75rem;
+
+.origin {
+  background-color: greenyellow;
+  height: 3px;
+  position: absolute;
+  width: 3px;
+}
 
 .widget {
   display: inline-block;
