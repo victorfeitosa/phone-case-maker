@@ -5,7 +5,7 @@ Case Customizer - Gocase Front End test
 This project is a front end coding test for Gocase. It consists of a phone case customizer interface where a user can select a background for the case, 
 add/remove images (stickers) and text, pick fonts, colours and styles and download an image to print a user-customized phone case.
 * Started on 06/04/2019
-* Finished on -/-/-
+* Finished on 19/04/2019
 
 ## The tech stack 💻
 * JavaScript ES6+
@@ -76,7 +76,8 @@ Text colour palettes were thought out to be bright and cheerful. Fonts were base
 6. Decouple everything I could. Sometimes the short deadline makes us do some coupling so we can to gain some results faster.
 7. Make 'send backward' and 'bring-forward' work relatively with other elements in canvas, so the element would be ordered based on the other components depth and not in a "increase/decrease depth regardless of the others" fashion.
 8. Definitely remove hacks to circunvent how vuetify work with v-img and the dom-to-image package's quirks
-9. Better planning and organization overall.
+9. Try to figure out some math before wasting time on "seeing what works", Linear Algebra review is necessary.
+10. Better planning and organization overall.
 
 ## Final notes 📔
 This was a great exercise. DOM handling and logc were a bit rusty before this, but coding the transform widget was great to get some of the logic and ideas of my game making days back. Despite some things being rushed and some things being done over someone else's code I have confidence that I could eliminate most of these dependencies if I have enough time. Also polishing handling the rough edges are also neededin some parts of the code and architecture.

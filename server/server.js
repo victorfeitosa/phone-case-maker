@@ -24,7 +24,7 @@ app.post('/upload-background', (req, res) => {
     })
     .on('file', (name, file) => {
       // Respond with the filename 
-      res.write(JSON.stringify({ file: file.name }));
+      res.write(JSON.stringify({ file: file.name, }));
     })
     .on('end', () => {
       res.end();

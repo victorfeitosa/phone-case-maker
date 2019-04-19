@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { mapGetters, } from 'vuex';
+import { mapGetters } from 'vuex';
 // NOTE: Here we use a little trick to have the print canvas into the DOM and redered, but never shown, allowing
 // us to render the image correctly without having to show the actual result on screen
 export default {
   computed: {
-    ...mapGetters({ printOpen: 'control/openPrintDialog', caseResolution: 'canvas/caseResolution', }),
+    ...mapGetters({ printOpen: 'control/openPrintDialog', caseResolution: 'canvas/caseResolution' }),
   },
   data() {
     return {

@@ -52,13 +52,13 @@ export function uploadbackgroundImage(fileInputHandle) {
 
     return axios({
       method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest', },
+      headers: { 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest' },
       url: '/upload-background',
       data: formData,
     })
       .then(response => {
         return new Promise((resolve) => {
-          resolve({ fileName: response.data.file, });
+          resolve({ fileName: response.data.file });
         });
       })
       .catch(error => {

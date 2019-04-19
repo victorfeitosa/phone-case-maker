@@ -63,7 +63,7 @@
       "semi": "error",
       "comma-dangle": [
         "warn",
-        "always"
+        "only-multiline"
       ]
     },
     "parserOptions": {

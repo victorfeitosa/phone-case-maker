@@ -16,7 +16,7 @@ import PhoneFrame from './PhoneFrame';
 import PhoneForeground from './PhoneForeground';
 import PrintCanvas from './PrintCanvas';
 import TransformWidget from '../ControlElements/TransformWidget';
-import { mapGetters, } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -27,7 +27,7 @@ export default {
     TransformWidget,
   },
   computed: {
-    ...mapGetters({ selectedElement: 'control/getSelectedCanvasElement', }),
+    ...mapGetters({ selectedElement: 'control/getSelectedCanvasElement' }),
     overflow() {
       return this.selectedElement ? 'visible' : 'hidden';
     },

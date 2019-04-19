@@ -2,7 +2,7 @@ const canvasElements = {
   namespaced: true,
   state: {
     elements: [],
-    caseResolution: { w: 875, h: 1840, },
+    caseResolution: { w: 875, h: 1840 },
   },
   getters: {
     getElements(state) {
@@ -27,7 +27,7 @@ const canvasElements = {
     updateElement(state, payload) {
       state.elements = state.elements.map(element => {
         if (element.id === payload.id) {
-          return { ...element, ...payload, };
+          return { ...element, ...payload };
         }
         return element;
       });

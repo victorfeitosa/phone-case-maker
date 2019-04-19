@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import uuid from 'uuid';
 
 export default {
@@ -33,7 +33,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ getText: 'control/getText', }),
+    ...mapGetters({ getText: 'control/getText' }),
     textShadow() {
       return this.fontColor === 'white'
         ? '-1px -1px 0 #757575, 1px -1px 0 #757575, -1px 1px 0 #757575, 1px 1px 0 #757575'
@@ -41,7 +41,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement', }),
+    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement' }),
     select() {
       this.setSelectedCanvasElement(this.id);
     },

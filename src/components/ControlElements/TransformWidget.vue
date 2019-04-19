@@ -199,8 +199,8 @@ export default {
         this.pY = e.clientY - this.enterY;
         const transform = {
           translate: { x: this.pX, y: this.pY },
-          rotate: this.angle || 0,
-          scale: this.scale,
+          rotate: this.oldAngle || 0,
+          scale: this.oldScale,
           fontSize: this.initialFontSize,
         };
         this.applyTransform(this.childElement, transform);
@@ -235,7 +235,7 @@ export default {
         const transform = {
           translate: { x: this.pX, y: this.pY },
           rotate: this.angle,
-          scale: this.scale,
+          scale: this.oldScale,
           fontSize: this.initialFontSize,
         };
         this.applyTransform(this.childElement, transform);
@@ -277,7 +277,7 @@ export default {
 
         const transform = {
           translate: { x: this.pX, y: this.pY },
-          rotate: this.angle,
+          rotate: this.oldAngle,
           scale: this.scale,
           fontSize: this.fontSize,
         };

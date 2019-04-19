@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import { toPng, } from 'dom-to-image';
+import { toPng } from 'dom-to-image';
 import CanvasSticker from '../components/DropElements/CanvasSticker.vue';
 import CanvasText from '../components/DropElements/CanvasText.vue';
 import store from '../stores/store';
 
 const targetResolution = store.getters['canvas/caseResolution'];
 
-function buildUpscaledElementsFromStoreElements(sourceRes = { w: 258, h: 541, }, targetRes = targetResolution) {
+function buildUpscaledElementsFromStoreElements(sourceRes = { w: 258, h: 541 }, targetRes = targetResolution) {
   const factorX = targetRes.w / sourceRes.w;
   const factorY = targetRes.h / sourceRes.h;
   const factorAspectRatio = factorY / factorX;
@@ -74,7 +74,7 @@ function buildPrintCanvas(
     alignY: 'center',
     size: '100% 100%',
   },
-  resolution = { w: 875, h: 1840, }
+  resolution = { w: 875, h: 1840 }
 ) {
   const printCanvas = document.createElement('div');
   // Sets up canvas 
@@ -112,13 +112,19 @@ export function printCanvasImage(imageName = 'phone-case') {
   // if the image has finished loading - hence being unable to get the ready state to print - we have to "wait" a little
   // bit to ensure loaded images
   setTimeout(() => {
-    toPng(printCanvas, { quality: 1, width: targetResolution.w, height: targetResolution.h, })
+    toPng(printCanvas, { quality: 1, width: targetResolution.w, height: targetResolution.h })
       .then(function (dataUrl) {
         let link = document.createElement('a');
+        link.style.display = 'none';
         link.download = `${imageName}.png`;
         link.href = dataUrl;
+
+        // Needs to append to DOM because of Firefox
+        printCanvas.append(link);
         link.click();
+
+        link.remove();
         printable.remove();
       });
-  }, 600);
+  }, 350);
 }

@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { uploadbackgroundImage, } from '../../utils/component.js';
-import { mapMutations, } from 'vuex';
+import { uploadbackgroundImage } from '../../utils/component.js';
+import { mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations({ setBackgroundImage: 'background/setBackgroundImage', }),
+    ...mapMutations({ setBackgroundImage: 'background/setBackgroundImage' }),
     pickImage() {
       this.$refs.uploadInput.click();
     },

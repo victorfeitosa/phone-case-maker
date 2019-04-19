@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import ElementOption from '../OptionElements/ElementOption';
 import ElementsProperties from '../OptionElements/ElementsProperties';
 
@@ -37,10 +37,10 @@ export default {
     ElementsProperties,
   },
   computed: {
-    ...mapGetters({ elementType: 'control/getElementType', }),
+    ...mapGetters({ elementType: 'control/getElementType' }),
   },
   methods: {
-    ...mapMutations({ setElementType: 'control/setElementType', }),
+    ...mapMutations({ setElementType: 'control/setElementType' }),
   },
 };
 </script>

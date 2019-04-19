@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, } from 'vuex';
-import { mountComponentToParent, getElementCanvasData, } from '../../utils/component.js';
+import { mapGetters, mapMutations } from 'vuex';
+import { mountComponentToParent, getElementCanvasData } from '../../utils/component.js';
 import CanvasSticker from '../DropElements/CanvasSticker';
 import CanvasText from '../DropElements/CanvasText';
 
@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    ...mapGetters({ backgroundImage: 'background/backgroundImage', }),
+    ...mapGetters({ backgroundImage: 'background/backgroundImage' }),
     ...mapMutations({
       setSelectedCanvasElement: 'control/setSelectedCanvasElement',
       addCanvasElement: 'canvas/addElement',
@@ -69,7 +69,7 @@ export default {
     },
     drop(e) {
       const dropData = JSON.parse(e.dataTransfer.getData('data'));
-      const elToBuild = { sticker: CanvasSticker, text: CanvasText, };
+      const elToBuild = { sticker: CanvasSticker, text: CanvasText };
 
       // Add canvas element to the canvas
       const elementInstance = mountComponentToParent(elToBuild[dropData.type], this.$refs.canvas, dropData.props);

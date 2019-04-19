@@ -4,7 +4,7 @@
 
 <script>
 import uuid from 'uuid';
-import { mapMutations, } from 'vuex';
+import { mapMutations } from 'vuex';
 
 export default {
   props: {
@@ -19,7 +19,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement', }),
+    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement' }),
     select() {
       this.setSelectedCanvasElement(this.id);
     },
