@@ -17,7 +17,7 @@ function buildUpscaledElementsFromStoreElements(sourceRes = { w: 258, h: 541, },
     left: e.left * factorX,
     top: e.top * factorY,
     height: e.height * factorY,
-    width: e.width * factorX, // TODO: see if this works better than just X scaling
+    width: e.width * factorX,
     fontSize: e.fontSize * factorX * factorAspectRatio,
   }));
 
@@ -48,11 +48,6 @@ function createPrintText(element) {
     },
   });
   printText.$mount();
-
-  // TODO: Check if Sanitize font family is required
-  // const rg = new RegExp(/"/, 'g');
-  // printText.style.fontFamily = printText.style.fontFamily ?
-  //   printText.style.fontFamily.replace(rg, '') : '';
 
   return printText.$el;
 }
