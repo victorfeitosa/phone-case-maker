@@ -55,9 +55,9 @@
 </template>
 
 <script>
-import { getElementCanvasData, } from '../../utils/component.js';
-import { toAngle, toRad, angleFromTransform, distance, } from '../../utils/math.js';
-import { mapGetters, mapMutations, } from 'vuex';
+import { getElementCanvasData } from '../../utils/component.js';
+import { toAngle, toRad, angleFromTransform, distance } from '../../utils/math.js';
+import { mapGetters, mapMutations } from 'vuex';
 
 // TODO: Go over this code to improve it
 export default {
@@ -120,7 +120,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement', getElement: 'canvas/getElement', }),
+    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement', getElement: 'canvas/getElement' }),
 
     visible() {
       return this.selectedElementId ? 'inline-block' : 'none';
@@ -175,6 +175,7 @@ export default {
       this.moving = true;
       this.enterX = e.clientX - this.pX;
       this.enterY = e.clientY - this.pY;
+      this.angle = this.oldAngle;
     },
     // on document
     endMove(e) {
@@ -192,7 +193,7 @@ export default {
         this.pX = e.clientX - this.enterX;
         this.pY = e.clientY - this.enterY;
         const transform = {
-          translate: { x: this.pX, y: this.pY, },
+          translate: { x: this.pX, y: this.pY },
           rotate: this.angle || 0,
           scale: this.scale,
           fontSize: this.initialFontSize,
@@ -227,7 +228,7 @@ export default {
       if (this.rotating && this.visible) {
         this.angle = toAngle(Math.atan2(e.clientY - this.enterY, e.clientX - this.enterX));
         const transform = {
-          translate: { x: this.pX, y: this.pY, },
+          translate: { x: this.pX, y: this.pY },
           rotate: this.angle,
           scale: this.scale,
           fontSize: this.initialFontSize,
@@ -270,7 +271,7 @@ export default {
         this.fontSize = this.initialFontSize + fontCoef;
 
         const transform = {
-          translate: { x: this.pX, y: this.pY, },
+          translate: { x: this.pX, y: this.pY },
           rotate: this.angle,
           scale: this.scale,
           fontSize: this.fontSize,
@@ -310,15 +311,18 @@ export default {
       this.rotating = false;
       this.scaling = false;
 
-      //Position control
+      // Position control
       this.pX = left;
       this.pY = top;
       this.enterX = 0;
       this.enterY = 0;
       this.enterScale = 1.0;
 
-      //Scale control
+      // Rotation control
+      this.oldAngle = angle;
       this.angle = angle;
+
+      // Scale control
       this.oldScale = this.scale;
       this.scale = 1.0;
       this.initialWidth = width;
@@ -343,7 +347,7 @@ export default {
     applyTransform(
       element,
       transform = {
-        translate: { x: 0, y: 0, },
+        translate: { x: 0, y: 0 },
         rotate: 0,
         scale: 1,
         fontSize: 24,

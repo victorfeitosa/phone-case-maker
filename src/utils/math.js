@@ -8,9 +8,12 @@ export function toRad(angle) {
 
 export function angleFromTransform(transform) {
   let splits = transform.split('(');
-  splits = splits[0].split(',');
+  splits = splits[1].split(',');
 
-  return toAngle(Math.atan2(splits[0])) || 0; // if NaN returns 0
+  const c = parseFloat(splits[2]);
+  const d = parseFloat(splits[3]);
+
+  return -toAngle(Math.atan2(c, d)) || 0; // if NaN returns 0
 }
 
 export function radFromTransform(transform) {
