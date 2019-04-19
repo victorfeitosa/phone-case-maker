@@ -9,24 +9,24 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, } from 'vuex';
 export default {
   props: {
     src: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     backgroundUrl() {
       return `url("${this.src}")`;
-    }
+    },
   },
   methods: {
     ...mapMutations({
-      setBackgroundImage: 'background/setBackgroundImage'
-    })
-  }
+      setBackgroundImage: 'background/setBackgroundImage',
+    }),
+  },
 };
 </script>
 

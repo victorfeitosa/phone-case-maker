@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs3 lg2 mx-3 class="sticker-item">
+  <v-flex xs3 lg2 pa-2 ma-3 class="sticker-item">
     <v-img
       draggable
       contain
@@ -16,25 +16,25 @@ export default {
   props: {
     src: {
       type: String,
-      required: true
+      required: true,
     },
-    alt: String
+    alt: String,
   },
   methods: {
     dragStart(e) {
       const data = {
         type: 'sticker',
         props: {
-          src: this.src
+          src: this.src,
         },
         height: this.$el.offsetHeight,
         width: this.$el.offsetWidth,
         enterX: e.layerX,
-        enterY: e.layerY
+        enterY: e.layerY,
       };
       e.dataTransfer.setData('data', JSON.stringify(data));
-    }
-  }
+    },
+  },
 };
 </script>
 

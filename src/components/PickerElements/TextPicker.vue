@@ -36,21 +36,21 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex';
+import { mapMutations, mapGetters, } from 'vuex';
 import TextItem from '../ToolElements/TextItem';
 import ColorPicker from '../PickerElements/ColorPicker';
 
 export default {
   components: {
     TextItem,
-    ColorPicker
+    ColorPicker,
   },
   computed: {
-    ...mapGetters({ text: 'control/getText' })
+    ...mapGetters({ text: 'control/getText', }),
   },
   methods: {
-    ...mapMutations({ setText: 'control/setText' })
-  }
+    ...mapMutations({ setText: 'control/setText', }),
+  },
 };
 </script>
 

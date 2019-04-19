@@ -55,10 +55,11 @@
 </template>
 
 <script>
-import { getElementCanvasData } from '../../utils/component.js';
-import { toAngle, toRad, angleFromTransform, distance } from '../../utils/math.js';
-import { mapGetters, mapMutations } from 'vuex';
+import { getElementCanvasData, } from '../../utils/component.js';
+import { toAngle, toRad, angleFromTransform, distance, } from '../../utils/math.js';
+import { mapGetters, mapMutations, } from 'vuex';
 
+// TODO: Go over this code to improve it
 export default {
   mounted() {
     this.$nextTick(() => {
@@ -115,15 +116,15 @@ export default {
       initialWidth: 0,
       initialHeight: 0,
       initialFontSize: 24,
-      fontSize: 24
+      fontSize: 24,
     };
   },
   computed: {
-    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement', getElement: 'canvas/getElement' }),
+    ...mapGetters({ selectedElementId: 'control/getSelectedCanvasElement', getElement: 'canvas/getElement', }),
 
     visible() {
       return this.selectedElementId ? 'inline-block' : 'none';
-    }
+    },
   },
   watch: {
     selectedElementId() {
@@ -131,13 +132,13 @@ export default {
       if (this.childElement) {
         this.matchTransform(this.childElement);
       }
-    }
+    },
   },
   methods: {
     ...mapMutations({
       deselectCanvasElement: 'control/deselectCanvasElement',
       updateElement: 'canvas/updateElement',
-      deleteElement: 'canvas/deleteElement'
+      deleteElement: 'canvas/deleteElement',
     }),
     deselect(e) {
       const outsideWidget = e.target.parentElement !== this.$el;
@@ -182,7 +183,7 @@ export default {
       const elData = getElementCanvasData(this.selectedElementId);
       this.updateElement({
         ...elData,
-        id: this.selectedElementId
+        id: this.selectedElementId,
       });
       e.stopPropagation();
     },
@@ -191,10 +192,10 @@ export default {
         this.pX = e.clientX - this.enterX;
         this.pY = e.clientY - this.enterY;
         const transform = {
-          translate: { x: this.pX, y: this.pY },
+          translate: { x: this.pX, y: this.pY, },
           rotate: this.angle || 0,
           scale: this.scale,
-          fontSize: this.initialFontSize
+          fontSize: this.initialFontSize,
         };
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
@@ -218,7 +219,7 @@ export default {
       this.updateElement({
         ...elData,
         id: this.selectedElementId,
-        rotate: this.angle
+        rotate: this.angle,
       });
       e.stopPropagation();
     },
@@ -226,10 +227,10 @@ export default {
       if (this.rotating && this.visible) {
         this.angle = toAngle(Math.atan2(e.clientY - this.enterY, e.clientX - this.enterX));
         const transform = {
-          translate: { x: this.pX, y: this.pY },
+          translate: { x: this.pX, y: this.pY, },
           rotate: this.angle,
           scale: this.scale,
-          fontSize: this.initialFontSize
+          fontSize: this.initialFontSize,
         };
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
@@ -256,7 +257,7 @@ export default {
         ...elData,
         id: this.selectedElementId,
         scale: this.scale,
-        fontSize: this.fontSize
+        fontSize: this.fontSize,
       });
       e.stopPropagation();
     },
@@ -269,10 +270,10 @@ export default {
         this.fontSize = this.initialFontSize + fontCoef;
 
         const transform = {
-          translate: { x: this.pX, y: this.pY },
+          translate: { x: this.pX, y: this.pY, },
           rotate: this.angle,
           scale: this.scale,
-          fontSize: this.fontSize
+          fontSize: this.fontSize,
         };
 
         this.applyTransform(this.childElement, transform);
@@ -342,10 +343,10 @@ export default {
     applyTransform(
       element,
       transform = {
-        translate: { x: 0, y: 0 },
+        translate: { x: 0, y: 0, },
         rotate: 0,
         scale: 1,
-        fontSize: 24
+        fontSize: 24,
       }
     ) {
       const widget = this.$el;
@@ -368,8 +369,8 @@ export default {
       if (element) {
         this.applyTransformProperties(element, width, height, top, left, transform.rotate, transform.fontSize);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

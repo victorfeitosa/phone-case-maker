@@ -90,7 +90,6 @@ const backgroundProperties = {
       state.alignY = 'bottom';
     },
   },
-  actions: {}
 };
 
 export default backgroundProperties;

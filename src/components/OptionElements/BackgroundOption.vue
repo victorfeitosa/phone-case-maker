@@ -14,22 +14,22 @@ export default {
   props: {
     icon: {
       type: String,
-      required: true
+      required: true,
     },
     label: {
       type: String,
-      required: true
+      required: true,
     },
     selected: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     click(e) {
       this.$emit('click', e);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,7 +1,8 @@
 const canvasElements = {
   namespaced: true,
   state: {
-    elements: []
+    elements: [],
+    caseResolution: { w: 875, h: 1840, },
   },
   getters: {
     getElements(state) {
@@ -14,7 +15,10 @@ const canvasElements = {
     },
     numElements(state) {
       return state.elements.length;
-    }
+    },
+    caseResolution(state) {
+      return state.caseResolution;
+    },
   },
   mutations: {
     addElement(state, element) {
@@ -23,7 +27,7 @@ const canvasElements = {
     updateElement(state, payload) {
       state.elements = state.elements.map(element => {
         if (element.id === payload.id) {
-          return { ...element, ...payload };
+          return { ...element, ...payload, };
         }
         return element;
       });
@@ -31,7 +35,12 @@ const canvasElements = {
     deleteElement(state, id) {
       state.elements = state.elements.filter(e => e.id !== id);
     },
-  }
+    changeCaseResolution(state, newRes) {
+      if (newRes && newRes.w && newRes.h) {
+        state.caseResolution = newRes;
+      }
+    },
+  },
 };
 
 export default canvasElements;

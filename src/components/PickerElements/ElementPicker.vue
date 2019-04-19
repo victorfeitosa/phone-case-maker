@@ -21,7 +21,7 @@
 
     <!-- Element Properties -->
     <v-flex class="scroll-y" max-height="250">
-      <ElementProperties :tab-active="elementType" />
+      <ElementsProperties :tab-active="elementType" />
     </v-flex>
   </v-layout>
 </template>
@@ -29,18 +29,18 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import ElementOption from '../OptionElements/ElementOption';
-import ElementProperties from '../OptionElements/ElementProperties';
+import ElementsProperties from '../OptionElements/ElementsProperties';
 
 export default {
   components: {
     ElementOption,
-    ElementProperties
+    ElementsProperties,
   },
   computed: {
-    ...mapGetters({ elementType: 'control/getElementType' })
+    ...mapGetters({ elementType: 'control/getElementType' }),
   },
   methods: {
-    ...mapMutations({ setElementType: 'control/setElementType' })
-  }
+    ...mapMutations({ setElementType: 'control/setElementType' }),
+  },
 };
 </script>

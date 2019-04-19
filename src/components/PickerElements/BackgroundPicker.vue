@@ -20,6 +20,7 @@
           <BackgroundItem src="/images/backgrounds/cacti.jpg" />
           <BackgroundItem src="/images/backgrounds/lama.jpg" />
           <BackgroundItem src="/images/backgrounds/stripes.jpg" />
+          <BackgroundItem src="/images/backgrounds/flowers.jpg" />
         </v-flex>
         <v-flex xs12 md4 pa-0>
           <UploadButton />
@@ -46,8 +47,8 @@ export default {
   components: {
     BackgroundItem,
     BackgroundAlignmentOptions,
-    UploadButton
-  }
+    UploadButton,
+  },
 };
 </script>
 

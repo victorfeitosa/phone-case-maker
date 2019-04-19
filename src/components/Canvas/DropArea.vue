@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import { mountComponentToParent, getElementCanvasData } from '../../utils/component.js';
+import { mapGetters, mapMutations, } from 'vuex';
+import { mountComponentToParent, getElementCanvasData, } from '../../utils/component.js';
 import CanvasSticker from '../DropElements/CanvasSticker';
 import CanvasText from '../DropElements/CanvasText';
 
@@ -28,20 +28,20 @@ export default {
     ...mapGetters({
       backgroundSize: 'background/backgroundSize',
       backgroundAlignX: 'background/alignmentX',
-      backgroundAlignY: 'background/alignmentY'
+      backgroundAlignY: 'background/alignmentY',
     }),
     backgroundPosition() {
       return `${this.backgroundAlignY} ${this.backgroundAlignX}`;
     },
     backgroundUrl() {
       return `url("${this.backgroundImage()}")`;
-    }
+    },
   },
   methods: {
-    ...mapGetters({ backgroundImage: 'background/backgroundImage' }),
+    ...mapGetters({ backgroundImage: 'background/backgroundImage', }),
     ...mapMutations({
       setSelectedCanvasElement: 'control/setSelectedCanvasElement',
-      addCanvasElement: 'canvas/addElement'
+      addCanvasElement: 'canvas/addElement',
     }),
     setupDropSticker(event, dropData, element) {
       const canvasRect = this.$el.getBoundingClientRect();
@@ -69,7 +69,7 @@ export default {
     },
     drop(e) {
       const dropData = JSON.parse(e.dataTransfer.getData('data'));
-      const elToBuild = { sticker: CanvasSticker, text: CanvasText };
+      const elToBuild = { sticker: CanvasSticker, text: CanvasText, };
 
       // Add canvas element to the canvas
       const elementInstance = mountComponentToParent(elToBuild[dropData.type], this.$refs.canvas, dropData.props);
@@ -90,13 +90,13 @@ export default {
           scale: 1,
           ...elementInstance._data, // includes uid and text if it's a text element
           ...elementInstance._props, // includes src if it's a sticker element
-          ...getElementCanvasData(uid) // includes all the positioning, size and transform props
+          ...getElementCanvasData(uid), // includes all the positioning, size and transform props
         };
         this.addCanvasElement(elementData);
         this.setSelectedCanvasElement(uid);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -112,7 +112,6 @@ export default {
   &__background {
     background-color: transparent;
     background-size: 100% 100%;
-    // border-radius: 32px;
     pointer-events: none;
     position: absolute;
     top: 0;

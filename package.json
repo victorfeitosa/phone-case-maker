@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint",
     "deploy": "git push heroku master",
     "heroku-postbuild": "yarn build",
+    "dev-start": "yarn build && yarn start",
     "start": "node ./server/server.js"
   },
   "dependencies": {
@@ -59,7 +60,11 @@
         1,
         "single"
       ],
-      "semi": "error"
+      "semi": "error",
+      "comma-dangle": [
+        "warn",
+        "always"
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"

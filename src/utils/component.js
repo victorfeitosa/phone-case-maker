@@ -6,7 +6,7 @@ export function mountComponentToParent(vueComponentToMount, parentEl, props) {
   const componentClass = Vue.extend(vueComponentToMount);
   const instance = new componentClass({
     store,
-    propsData: props
+    propsData: props,
   });
 
   instance.$mount();
@@ -20,13 +20,13 @@ export function getElementCanvasData(elementId) {
   let canvasData = null;
   if (element) {
     canvasData = {
+      ...element._props,
       left: element.offsetLeft,
       top: element.offsetTop,
       height: element.offsetHeight,
       width: element.offsetWidth,
       transform: element.style.transform,
       zIndex: element.style.zIndex,
-      ...element._props
     };
   }
   return canvasData;
@@ -52,13 +52,13 @@ export function uploadbackgroundImage(fileInputHandle) {
 
     return axios({
       method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest', },
       url: '/upload-background',
-      data: formData
+      data: formData,
     })
       .then(response => {
         return new Promise((resolve) => {
-          resolve({ fileName: response.data.file });
+          resolve({ fileName: response.data.file, });
         });
       })
       .catch(error => {

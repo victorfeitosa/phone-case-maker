@@ -16,6 +16,10 @@ add/remove images (stickers) and text, pick fonts, colours and styles and downlo
 * Free SVG stickers
 * Lots of coffee
 
+## Images Attribution
+* SVG Stickers - Summer set (<a href="http://www.freepik.com">Designed by rawpixel.com / Freepik</a>)
+* SVG Stickers - Cute set (<a href="http://www.freepik.com">Designed by Freepik</a>)
+* Backgorund Image Options - *No references were found, please inform if you own these images*
 
 ### Dependencies 🌋
 * Vue and all of its stack (VueX, Babel, Babel Polyfill, ES6 utils)

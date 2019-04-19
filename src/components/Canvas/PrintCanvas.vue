@@ -6,7 +6,7 @@
         <div
           id="print-canvas"
           class="print-canvas"
-          :style="{ width: width, height: height }"
+          :style="{ width: caseResolution.w, height: caseResolution.w }"
         ></div>
       </v-card-text>
     </v-card>
@@ -14,25 +14,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, } from 'vuex';
+// NOTE: Here we use a little trick to have the print canvas into the DOM and redered, but never shown, allowing
+// us to render the image correctly without having to show the actual result on screen
 export default {
   computed: {
-    ...mapGetters({ printOpen: 'control/openPrintDialog' })
+    ...mapGetters({ printOpen: 'control/openPrintDialog', caseResolution: 'canvas/caseResolution', }),
   },
   data() {
     return {
-      height: 1840,
-      width: 875,
-      dialog: false
+      dialog: false,
     };
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-$device-width: 1840px;
-$device-height: 875px;
-
 .print-canvas {
   position: relative;
 }

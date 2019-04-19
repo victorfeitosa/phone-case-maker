@@ -1,8 +1,10 @@
 <template>
   <v-app id="app">
     <v-toolbar app dark>
-        <v-toolbar-title class="toolbar__title">Case Customizer - Coding challenge</v-toolbar-title>
-        <v-spacer />
+      <v-toolbar-title class="toolbar__title"
+        >Case Customizer Challenge</v-toolbar-title
+      >
+      <v-spacer />
     </v-toolbar>
     <v-content>
       <CustomizerPage />
@@ -15,8 +17,8 @@ import CustomizerPage from './components/Pages/CustomizerPage';
 export default {
   name: 'app',
   components: {
-    CustomizerPage
-  }
+    CustomizerPage,
+  },
 };
 </script>
 
@@ -30,7 +32,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 2rem;
 }
 
 .toolbar__title {

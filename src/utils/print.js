@@ -1,18 +1,15 @@
 import Vue from 'vue';
-import { toPng } from 'dom-to-image';
+import { toPng, } from 'dom-to-image';
 import CanvasSticker from '../components/DropElements/CanvasSticker.vue';
 import CanvasText from '../components/DropElements/CanvasText.vue';
 import store from '../stores/store';
 
-// let getElements = store.getters['canvas/getElements'];
-// var getBackgroundImage = store.getters['background/backgroundImage'];
-// let getBackgroundAlignX = store.getters['background/alignmentX'];
-// let getBackgroundAlignY = store.getters['background/alignmentY'];
-// let getBackgroundSize = store.getters['background/backgroundSize'];
+const targetResolution = store.getters['canvas/caseResolution'];
 
-function buildUpscaledElementsFromStoreElements(sourceRes = { w: 258, h: 541 }, targetRes = { w: 875, h: 1840 }) {
+function buildUpscaledElementsFromStoreElements(sourceRes = { w: 258, h: 541, }, targetRes = targetResolution) {
   const factorX = targetRes.w / sourceRes.w;
   const factorY = targetRes.h / sourceRes.h;
+  const factorAspectRatio = factorY / factorX;
 
   const elements = store.getters['canvas/getElements'];
   const printElements = elements.map(e => ({
@@ -20,8 +17,8 @@ function buildUpscaledElementsFromStoreElements(sourceRes = { w: 258, h: 541 }, 
     left: e.left * factorX,
     top: e.top * factorY,
     height: e.height * factorY,
-    width: e.width * factorX,
-    fontSize: e.fontSize * factorX
+    width: e.width * factorX, // TODO: see if this works better than just X scaling
+    fontSize: e.fontSize * factorX * factorAspectRatio,
   }));
 
   return printElements;
@@ -32,8 +29,8 @@ function createPrintSticker(element) {
   const printSticker = new componentClass({
     store,
     propsData: {
-      src: element.src
-    }
+      src: element.src,
+    },
   });
   printSticker.$mount();
 
@@ -47,10 +44,15 @@ function createPrintText(element) {
     propsData: {
       color: element.color,
       font: element.font,
-      text: element.text
-    }
+      text: element.text,
+    },
   });
   printText.$mount();
+
+  // TODO: Check if Sanitize font family is required
+  // const rg = new RegExp(/"/, 'g');
+  // printText.style.fontFamily = printText.style.fontFamily ?
+  //   printText.style.fontFamily.replace(rg, '') : '';
 
   return printText.$el;
 }
@@ -66,10 +68,6 @@ function createPrintElement(element) {
   printElement.style.transform = element.transform;
   printElement.style.zIndex = element.zIndex;
 
-  const rg = new RegExp(/"/, 'g');
-  printElement.style.fontFamily = printElement.style.fontFamily ?
-    printElement.style.fontFamily.replace(rg, '') : '';
-
   return printElement;
 }
 
@@ -79,9 +77,9 @@ function buildPrintCanvas(
     src: '',
     alignX: 'center',
     alignY: 'center',
-    size: '100% 100%'
+    size: '100% 100%',
   },
-  resolution = { w: 875, h: 1840 }
+  resolution = { w: 875, h: 1840, }
 ) {
   const printCanvas = document.createElement('div');
   // Sets up canvas 
@@ -109,14 +107,17 @@ export function printCanvasImage(imageName = 'phone-case') {
     src: store.getters['background/backgroundImage'],
     alignX: store.getters['background/alignmentX'],
     alignY: store.getters['background/alignmentY'],
-    size: store.getters['background/backgroundSize']
+    size: store.getters['background/backgroundSize'],
   });
 
   const printCanvas = document.getElementById('print-canvas');
   printCanvas.append(printable);
 
+  // NOTE: This timeout is a hack because of how v-img works. Since it sends no load events and there's no way to know
+  // if the image has finished loading - hence being unable to get the ready state to print - we have to "wait" a little
+  // bit to ensure loaded images
   setTimeout(() => {
-    toPng(printCanvas, { quality: 0.98, width: 875, height: 1840 })
+    toPng(printCanvas, { quality: 1, width: targetResolution.w, height: targetResolution.h, })
       .then(function (dataUrl) {
         let link = document.createElement('a');
         link.download = `${imageName}.png`;
@@ -124,5 +125,5 @@ export function printCanvasImage(imageName = 'phone-case') {
         link.click();
         printable.remove();
       });
-  }, 1500);
+  }, 600);
 }

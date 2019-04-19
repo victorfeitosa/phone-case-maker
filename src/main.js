@@ -10,14 +10,12 @@ import store from './stores/store';
 
 
 Vue.use(Vuetify, {
-  iconfont: 'md'
+  iconfont: 'md',
 });
 
-
-
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 new Vue({
   render: h => h(App),
-  store
+  store,
 }).$mount('#app');

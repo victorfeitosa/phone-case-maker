@@ -3,13 +3,13 @@ const control = {
   state: {
     namespaced: true,
     elementType: 'sticker',
-    text: 'A little text',
+    text: 'Your name',
     selectedCanvasElement: '',
 
     selectedFont: null,
     selectedFontColor: 'default',
 
-    openPrintDialog: false
+    openPrintDialog: false,
   },
   getters: {
     getElementType(state) {
@@ -29,7 +29,7 @@ const control = {
     },
     openPrintDialog(state) {
       return state.openPrintDialog;
-    }
+    },
   },
   mutations: {
     setElementType(state, elementType) {
@@ -57,7 +57,6 @@ const control = {
       state.openPrintDialog = false;
     },
   },
-  actions: {}
 };
 
 export default control;

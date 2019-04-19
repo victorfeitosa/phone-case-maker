@@ -63,11 +63,11 @@
 
 <script>
 import BackgroundOption from './BackgroundOption';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, } from 'vuex';
 
 export default {
   components: {
-    BackgroundOption
+    BackgroundOption,
   },
   computed: {
     ...mapGetters({
@@ -81,8 +81,8 @@ export default {
 
       stretch: 'background/isStretched',
       cover: 'background/isCover',
-      contain: 'background/isContain'
-    })
+      contain: 'background/isContain',
+    }),
   },
   methods: {
     ...mapMutations({
@@ -96,9 +96,9 @@ export default {
 
       setStretch: 'background/setSizeStretch',
       setCover: 'background/setSizeCover',
-      setContain: 'background/setSizeContain'
-    })
-  }
+      setContain: 'background/setSizeContain',
+    }),
+  },
 };
 </script>
 

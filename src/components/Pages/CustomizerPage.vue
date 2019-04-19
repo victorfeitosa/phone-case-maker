@@ -41,19 +41,19 @@
 import BackgroundPicker from '../PickerElements/BackgroundPicker';
 import Canvas from '../Canvas/Canvas';
 import ElementPicker from '../PickerElements/ElementPicker';
-import { printCanvasImage } from '../../utils/print.js';
+import { printCanvasImage, } from '../../utils/print.js';
 
 export default {
   components: {
     BackgroundPicker,
     Canvas,
-    ElementPicker
+    ElementPicker,
   },
   methods: {
     getCase() {
       printCanvasImage();
-    }
-  }
+    },
+  },
 };
 </script>
 

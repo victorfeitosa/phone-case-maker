@@ -17,8 +17,8 @@
 import ColorPaletteOption from '../OptionElements/ColorPaletteOption';
 export default {
   components: {
-    ColorPaletteOption
-  }
+    ColorPaletteOption,
+  },
 };
 </script>
 

@@ -9,25 +9,25 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, } from 'vuex';
 
 export default {
   props: {
     color: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
-    ...mapMutations({ setFontColor: 'control/setSelectedFontColor' })
+    ...mapMutations({ setFontColor: 'control/setSelectedFontColor', }),
   },
   computed: {
-    ...mapGetters({ colors: 'palette/colors', getColor: 'palette/color' }),
+    ...mapGetters({ colors: 'palette/colors', getColor: 'palette/color', }),
     hexColor() {
       const pickedColor = this.getColor(this.color);
       return pickedColor.value;
-    }
-  }
+    },
+  },
 };
 </script>
 

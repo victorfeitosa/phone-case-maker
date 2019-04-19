@@ -14,18 +14,18 @@ export default {
   props: {
     icon: {
       type: String,
-      required: true
+      required: true,
     },
     label: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     click(e) {
       this.$emit('click', e);
-    }
-  }
+    },
+  },
 };
 </script>
 

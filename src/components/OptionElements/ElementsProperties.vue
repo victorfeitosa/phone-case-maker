@@ -15,14 +15,14 @@ import StickerPicker from '../PickerElements/StickerPicker';
 export default {
   components: {
     TextPicker,
-    StickerPicker
+    StickerPicker,
   },
   props: {
     tabActive: {
       type: String,
-      default: 'sticker'
-    }
-  }
+      default: 'sticker',
+    },
+  },
 };
 </script>
 

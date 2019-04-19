@@ -15,27 +15,30 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  data() {
+    return {
+      whiteOutline: '-1px -1px 0 #757575, 1px -1px 0 #757575, -1px 1px 0 #757575, 1px 1px 0 #757575',
+    };
+  },
   props: {
     font: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     ...mapGetters({
       palette: 'palette/colors',
       getColor: 'palette/color',
       text: 'control/getText',
-      fontColor: 'control/getSelectedFontColor'
+      fontColor: 'control/getSelectedFontColor',
     }),
     textColor() {
       return this.getColor(this.fontColor).value;
     },
     textShadow() {
-      return this.fontColor === 'white'
-        ? '-1px -1px 0 #757575, 1px -1px 0 #757575, -1px 1px 0 #757575, 1px 1px 0 #757575'
-        : '';
-    }
+      return this.fontColor === 'white' ? this.whiteOutline : '';
+    },
   },
   methods: {
     dragStart(e) {
@@ -43,14 +46,14 @@ export default {
         type: 'text',
         props: {
           font: this.font,
-          color: this.textColor
+          color: this.textColor,
         },
         enterX: e.layerX,
-        enterY: e.layerY
+        enterY: e.layerY,
       };
       e.dataTransfer.setData('data', JSON.stringify(data));
-    }
-  }
+    },
+  },
 };
 </script>
 

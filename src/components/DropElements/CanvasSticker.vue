@@ -4,26 +4,26 @@
 
 <script>
 import uuid from 'uuid';
-import { mapMutations } from 'vuex';
+import { mapMutations, } from 'vuex';
 
 export default {
   props: {
     src: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      id: uuid()
+      id: uuid(),
     };
   },
   methods: {
-    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement' }),
+    ...mapMutations({ setSelectedCanvasElement: 'control/setSelectedCanvasElement', }),
     select() {
       this.setSelectedCanvasElement(this.id);
-    }
-  }
+    },
+  },
 };
 </script>
 

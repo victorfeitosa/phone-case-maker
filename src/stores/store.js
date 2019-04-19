@@ -13,8 +13,8 @@ const store = new Vuex.Store({
     background,
     canvas,
     palette,
-    control
-  }
+    control,
+  },
 });
 
 export default store;
