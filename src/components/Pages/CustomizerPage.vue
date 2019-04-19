@@ -42,18 +42,21 @@ import BackgroundPicker from '../PickerElements/BackgroundPicker';
 import Canvas from '../Canvas/Canvas';
 import ElementPicker from '../PickerElements/ElementPicker';
 import { printCanvasImage } from '../../utils/print.js';
+import { mapMutations } from 'vuex';
 
 export default {
   components: {
     BackgroundPicker,
     Canvas,
-    ElementPicker,
+    ElementPicker
   },
   methods: {
+    ...mapMutations({ openDialog: 'control/setPrintDialogOpen' }),
     getCase() {
+      this.openDialog();
       printCanvasImage();
-    },
-  },
+    }
+  }
 };
 </script>
 

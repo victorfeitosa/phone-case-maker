@@ -1,6 +1,5 @@
 <template>
   <div class="widget" ref="widget" :style="{ display: visible }">
-    <div class="origin" :style="{ left: enterX, top: enterY }"></div>
     <div
       icon
       color="red"
@@ -60,7 +59,6 @@ import { getElementCanvasData } from '../../utils/component.js';
 import { toAngle, toRad, angleFromTransform, distance } from '../../utils/math.js';
 import { mapGetters, mapMutations } from 'vuex';
 
-// TODO: Go over this code to improve it
 export default {
   mounted() {
     this.$nextTick(() => {
@@ -121,7 +119,7 @@ export default {
 
       // origin debugging
       originX: 0,
-      originY: 0,
+      originY: 0
     };
   },
   computed: {
@@ -129,7 +127,7 @@ export default {
 
     visible() {
       return this.selectedElementId ? 'inline-block' : 'none';
-    },
+    }
   },
   watch: {
     selectedElementId() {
@@ -137,13 +135,13 @@ export default {
       if (this.childElement) {
         this.matchTransform(this.childElement);
       }
-    },
+    }
   },
   methods: {
     ...mapMutations({
       deselectCanvasElement: 'control/deselectCanvasElement',
       updateElement: 'canvas/updateElement',
-      deleteElement: 'canvas/deleteElement',
+      deleteElement: 'canvas/deleteElement'
     }),
     deselect(e) {
       const outsideWidget = e.target.parentElement !== this.$el;
@@ -189,7 +187,7 @@ export default {
       const elData = getElementCanvasData(this.selectedElementId);
       this.updateElement({
         ...elData,
-        id: this.selectedElementId,
+        id: this.selectedElementId
       });
       e.stopPropagation();
     },
@@ -199,9 +197,9 @@ export default {
         this.pY = e.clientY - this.enterY;
         const transform = {
           translate: { x: this.pX, y: this.pY },
-          rotate: this.oldAngle || 0,
-          scale: this.oldScale,
-          fontSize: this.initialFontSize,
+          rotate: this.angle || 0,
+          scale: this.scale,
+          fontSize: this.initialFontSize
         };
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
@@ -225,7 +223,7 @@ export default {
       this.updateElement({
         ...elData,
         id: this.selectedElementId,
-        rotate: this.angle,
+        rotate: this.angle
       });
       e.stopPropagation();
     },
@@ -235,8 +233,8 @@ export default {
         const transform = {
           translate: { x: this.pX, y: this.pY },
           rotate: this.angle,
-          scale: this.oldScale,
-          fontSize: this.initialFontSize,
+          scale: this.scale,
+          fontSize: this.initialFontSize
         };
         this.applyTransform(this.childElement, transform);
         e.preventDefault();
@@ -263,7 +261,7 @@ export default {
         ...elData,
         id: this.selectedElementId,
         scale: this.scale,
-        fontSize: this.fontSize,
+        fontSize: this.fontSize
       });
       e.stopPropagation();
     },
@@ -277,9 +275,9 @@ export default {
 
         const transform = {
           translate: { x: this.pX, y: this.pY },
-          rotate: this.oldAngle,
+          rotate: this.angle,
           scale: this.scale,
-          fontSize: this.fontSize,
+          fontSize: this.fontSize
         };
 
         this.applyTransform(this.childElement, transform);
@@ -355,7 +353,7 @@ export default {
         translate: { x: 0, y: 0 },
         rotate: 0,
         scale: 1,
-        fontSize: 24,
+        fontSize: 24
       }
     ) {
       const widget = this.$el;
@@ -378,20 +376,13 @@ export default {
       if (element) {
         this.applyTransformProperties(element, width, height, top, left, transform.rotate, transform.fontSize);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 $btn-size: 1.75rem;
-
-.origin {
-  background-color: greenyellow;
-  height: 3px;
-  position: absolute;
-  width: 3px;
-}
 
 .widget {
   display: inline-block;

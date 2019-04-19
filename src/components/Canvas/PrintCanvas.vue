@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="printOpen">
     <v-card>
-      <v-card-title>Printing following case</v-card-title>
+      <v-card-title class="subtitle text-xs-center"
+        >Printing your case</v-card-title
+      >
       <v-card-text>
         <div
           id="print-canvas"
@@ -19,13 +21,13 @@ import { mapGetters } from 'vuex';
 // us to render the image correctly without having to show the actual result on screen
 export default {
   computed: {
-    ...mapGetters({ printOpen: 'control/openPrintDialog', caseResolution: 'canvas/caseResolution' }),
+    ...mapGetters({ printOpen: 'control/openPrintDialog', caseResolution: 'canvas/caseResolution' })
   },
   data() {
     return {
-      dialog: false,
+      dialog: false
     };
-  },
+  }
 };
 </script>
 

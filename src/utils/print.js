@@ -49,6 +49,9 @@ function createPrintText(element) {
   });
   printText.$mount();
 
+  const rg = new RegExp(/"/, 'g');
+  printText.$el.style.fontFamily = printText.$el.style.fontFamily.replace(rg, '');
+
   return printText.$el;
 }
 
@@ -112,6 +115,7 @@ export function printCanvasImage(imageName = 'phone-case') {
   // if the image has finished loading - hence being unable to get the ready state to print - we have to "wait" a little
   // bit to ensure loaded images
   setTimeout(() => {
+    console.log(printCanvas.innerHTML);
     toPng(printCanvas, { quality: 1, width: targetResolution.w, height: targetResolution.h })
       .then(function (dataUrl) {
         let link = document.createElement('a');
@@ -122,9 +126,11 @@ export function printCanvasImage(imageName = 'phone-case') {
         // Needs to append to DOM because of Firefox
         printCanvas.append(link);
         link.click();
+        store.commit('control/setPrintDialogClose');
 
         link.remove();
         printable.remove();
+
       });
-  }, 350);
+  }, 850);
 }
