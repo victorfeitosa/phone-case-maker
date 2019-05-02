@@ -1,11 +1,11 @@
-Case Customizer - Gocase Front End test
+Phone Case Maker
 ===
 
 ## The project 🧙
-This project is a front end coding test for Gocase. It consists of a phone case customizer interface where a user can select a background for the case, 
+This project consists of a phone case customizer interface where a user can select a background for the case, 
 add/remove images (stickers) and text, pick fonts, colours and styles and download an image to print a user-customized phone case.
 * Started on 06/04/2019
-* Finished on 19/04/2019
+* Finished on 19/04/2019 (still a W.I.P.)
 
 ## The tech stack 💻
 * JavaScript ES6+
@@ -29,7 +29,6 @@ add/remove images (stickers) and text, pick fonts, colours and styles and downlo
 * Axios for POST requests
 * Dom-to-image to render the phone case image
 * UUID for id generation
-
 
 ## Browser Support (tested on) 🌎
 * Chrome latest
