@@ -115,7 +115,6 @@ export function printCanvasImage(imageName = 'phone-case') {
   // if the image has finished loading - hence being unable to get the ready state to print - we have to "wait" a little
   // bit to ensure loaded images
   setTimeout(() => {
-    console.log(printCanvas.innerHTML);
     toPng(printCanvas, { quality: 1, width: targetResolution.w, height: targetResolution.h })
       .then(function (dataUrl) {
         let link = document.createElement('a');
