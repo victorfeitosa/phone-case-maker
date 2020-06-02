@@ -16,6 +16,12 @@ add/remove images (stickers) and text, pick fonts, colours and styles and downlo
 * Free SVG stickers
 * Lots of coffee
 
+## How to run it locally 🕹
+* This test still uses Yarn as it's package manager
+* Run `yarn` to install all the dependencies
+* Run `npm run dev-start` to build the project and serve it
+
+
 ## Images Attribution 📷️
 * SVG Stickers - Summer set (<a href="http://www.freepik.com">Designed by rawpixel.com / Freepik</a>)
 * SVG Stickers - Cute set (<a href="http://www.freepik.com">Designed by Freepik</a>)
